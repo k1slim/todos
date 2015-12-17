@@ -4,71 +4,170 @@
     <meta charset="UTF-8">
     <title>ToDos</title>
     <link rel="stylesheet" type="text/css" href="css/compiled/main.css">
+    <script data-main="js/compiled/app" src="bower_components/requirejs/require.js"></script>
 </head>
 <body>
 
-    <section class="page">
-        <header class="header">
-            <div class="head">
-                <h1>
-                    ToDos
-                </h1>
-            </div>
-
-            <nav class="nav">
-                <div class="menuItem">
-                    <a class="menuItemText">
-                        1dsf,nsdbffvsdbfvbf
-                    </a>
-                </div>
-                <div class="menuItem">
-                    <a class="menuItemText">
-                        2
-                    </a>
-                </div>
-                <div class="menuItem">
-                    <a class="menuItemText">
-                      3
-                    </a>
-                </div>
-                <div class="menuItem">
-                    <a class="menuItemText">
-                        Создать
-                    </a>
-                </div>
-            </nav>
-        </header>
-
-        <div class="content">
-            <div class="item">1</div>
-            <div class="item">2</div>
-            <div class="item">3</div>
-            <div class="item">4</div>
-            <div class="item">5</div>
-            <div class="item">6</div>
-            <div class="item">7</div>
-            <div class="item">8</div>
-            <div class="item">9</div>
-            <div class="item">10</div>
-            <div class="item">11</div>
-            <div class="item">12</div>
-            <div class="item">13</div>
-            <div class="item">14</div>
-            <div class="item">15</div>
-            <div class="item">16</div>
-            <div class="item">17</div>
-            <div class="item">18</div>
-            <div class="item">19</div>
-            <div class="item">20</div>
-            <div class="item">21</div>
-            <div class="item">22</div>
-            <div class="item">23</div>
-            <div class="item">24</div>
-            <div class="item">25</div>
-
+<section class="page">
+    <header class="header">
+        <div class="head">
+            <h1>
+                ToDos
+            </h1>
         </div>
 
-    </section>
+        <nav class="nav">
+            <div class="menuItem">
+                <span class="menuItemText" contenteditable="true">
+                    Hello
+                </span>
+            </div>
+            <div class="menuItem">
+                <span class="menuItemText" contenteditable="true">
+                    World
+                </span>
+            </div>
+            <div class="menuItem">
+                <span class="menuItemText" contenteditable="true">
+                  Today
+                </span>
+            </div>
+            <div class="menuItem">
+                <span class="menuItemText" contenteditable="true">
+                    Add new
+                </span>
+            </div>
+        </nav>
+    </header>
+
+    <div class="content" id="content">
+        <!--<div class="item">-->
+            <!--<div class="itemDone">-->
+                <!--<img src="image/icons/done.png">-->
+            <!--</div>-->
+            <!--<div class="itemText" contenteditable="true">-->
+                <!--1-->
+            <!--</div>-->
+
+            <!--<div class="itemDelete">-->
+                <!--<img src="image/icons/delete.png">-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="item">-->
+            <!--<div class="itemDone"><img src="image/icons/done.png" alt=""></div>-->
+            <!--<div class="itemText" contenteditable="true">SomeText #1</div>-->
+            <!--<div class="itemDelete"><img src="image/icons/delete.png" alt=""></div>-->
+        <!--</div>-->
+        <!--<div class="item">-->
+            <!--<div class="itemDone"><img src="image/icons/done.png" alt=""></div>-->
+            <!--<div class="itemText" contenteditable="true">SomeText #2</div>-->
+            <!--<div class="itemDelete"><img src="image/icons/delete.png" alt=""></div>-->
+        <!--</div>-->
+        <!--<div class="item">-->
+            <!--<div class="itemDone"><img src="image/icons/done.png" alt=""></div>-->
+            <!--<div class="itemText" contenteditable="true">SomeText #3</div>-->
+            <!--<div class="itemDelete"><img src="image/icons/delete.png" alt=""></div>-->
+        <!--</div>-->
+        <!--<div class="item">-->
+            <!--<div class="itemDone"><img src="image/icons/done.png" alt=""></div>-->
+            <!--<div class="itemText" contenteditable="true">SomeText #4</div>-->
+            <!--<div class="itemDelete"><img src="image/icons/delete.png" alt=""></div>-->
+        <!--</div>-->
+        <!--<div class="item">-->
+            <!--<div class="itemDone"><img src="image/icons/done.png" alt=""></div>-->
+            <!--<div class="itemText" contenteditable="true">SomeText #5</div>-->
+            <!--<div class="itemDelete"><img src="image/icons/delete.png" alt=""></div>-->
+        <!--</div>-->
+        <!--<div class="item">-->
+            <!--<div class="itemDone"><img src="image/icons/done.png" alt=""></div>-->
+            <!--<div class="itemText" contenteditable="true">SomeText #6</div>-->
+            <!--<div class="itemDelete"><img src="image/icons/delete.png" alt=""></div>-->
+        <!--</div>-->
+        <!--<div class="item">-->
+            <!--<div class="itemDone"><img src="image/icons/done.png" alt=""></div>-->
+            <!--<div class="itemText" contenteditable="true">SomeText #7</div>-->
+            <!--<div class="itemDelete"><img src="image/icons/delete.png" alt=""></div>-->
+        <!--</div>-->
+        <!--<div class="item">-->
+            <!--<div class="itemDone"><img src="image/icons/done.png" alt=""></div>-->
+            <!--<div class="itemText" contenteditable="true">SomeText #8</div>-->
+            <!--<div class="itemDelete"><img src="image/icons/delete.png" alt=""></div>-->
+        <!--</div>-->
+        <!--<div class="item">-->
+            <!--<div class="itemDone"><img src="image/icons/done.png" alt=""></div>-->
+            <!--<div class="itemText" contenteditable="true">SomeText #9</div>-->
+            <!--<div class="itemDelete"><img src="image/icons/delete.png" alt=""></div>-->
+        <!--</div>-->
+        <!--<div class="item">-->
+            <!--<div class="itemDone"><img src="image/icons/done.png" alt=""></div>-->
+            <!--<div class="itemText" contenteditable="true">SomeText #10</div>-->
+            <!--<div class="itemDelete"><img src="image/icons/delete.png" alt=""></div>-->
+        <!--</div>-->
+        <!--<div class="item">-->
+            <!--<div class="itemDone"><img src="image/icons/done.png" alt=""></div>-->
+            <!--<div class="itemText" contenteditable="true">SomeText #11</div>-->
+            <!--<div class="itemDelete"><img src="image/icons/delete.png" alt=""></div>-->
+        <!--</div>-->
+        <!--<div class="item">-->
+            <!--<div class="itemDone"><img src="image/icons/done.png" alt=""></div>-->
+            <!--<div class="itemText" contenteditable="true">SomeText #12</div>-->
+            <!--<div class="itemDelete"><img src="image/icons/delete.png" alt=""></div>-->
+        <!--</div>-->
+        <!--<div class="item">-->
+            <!--<div class="itemDone"><img src="image/icons/done.png" alt=""></div>-->
+            <!--<div class="itemText" contenteditable="true">SomeText #13</div>-->
+            <!--<div class="itemDelete"><img src="image/icons/delete.png" alt=""></div>-->
+        <!--</div>-->
+        <!--<div class="item">-->
+            <!--<div class="itemDone"><img src="image/icons/done.png" alt=""></div>-->
+            <!--<div class="itemText" contenteditable="true">SomeText #14</div>-->
+            <!--<div class="itemDelete"><img src="image/icons/delete.png" alt=""></div>-->
+        <!--</div>-->
+        <!--<div class="item">-->
+            <!--<div class="itemDone"><img src="image/icons/done.png" alt=""></div>-->
+            <!--<div class="itemText" contenteditable="true">SomeText #15</div>-->
+            <!--<div class="itemDelete"><img src="image/icons/delete.png" alt=""></div>-->
+        <!--</div>-->
+        <!--<div class="item">-->
+            <!--<div class="itemDone"><img src="image/icons/done.png" alt=""></div>-->
+            <!--<div class="itemText" contenteditable="true">SomeText #16</div>-->
+            <!--<div class="itemDelete"><img src="image/icons/delete.png" alt=""></div>-->
+        <!--</div>-->
+        <!--<div class="item">-->
+            <!--<div class="itemDone"><img src="image/icons/done.png" alt=""></div>-->
+            <!--<div class="itemText" contenteditable="true">SomeText #17</div>-->
+            <!--<div class="itemDelete"><img src="image/icons/delete.png" alt=""></div>-->
+        <!--</div>-->
+        <!--<div class="item">-->
+            <!--<div class="itemDone"><img src="image/icons/done.png" alt=""></div>-->
+            <!--<div class="itemText" contenteditable="true">SomeText #18</div>-->
+            <!--<div class="itemDelete"><img src="image/icons/delete.png" alt=""></div>-->
+        <!--</div>-->
+        <!--<div class="item">-->
+            <!--<div class="itemDone"><img src="image/icons/done.png" alt=""></div>-->
+            <!--<div class="itemText" contenteditable="true">SomeText #19</div>-->
+            <!--<div class="itemDelete"><img src="image/icons/delete.png" alt=""></div>-->
+        <!--</div>-->
+        <!--<div class="item">-->
+            <!--<div class="itemDone"><img src="image/icons/done.png" alt=""></div>-->
+            <!--<div class="itemText" contenteditable="true">SomeText #20</div>-->
+            <!--<div class="itemDelete"><img src="image/icons/delete.png" alt=""></div>-->
+        <!--</div>-->
+    </div>
+
+    <footer class="footer">
+        <div class="textField">
+            <input type="text" placeholder="Text here">
+        </div>
+        <div class="addButton">
+            ADD
+        </div>
+</footer>
+
+
+
+</section>
 
 </body>
 </html>

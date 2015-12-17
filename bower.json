@@ -1,0 +1,20 @@
+{
+  "name": "todos",
+  "version": "0.0.0",
+  "authors": [
+    "k1slim"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~0.14.3",
+    "jquery": "~2.1.4",
+    "requirejs": "~2.1.22"
+  }
+}
