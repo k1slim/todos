@@ -4,15 +4,22 @@ require.config({
         'react': '../../bower_components/react/react',
         'reactDOM': '../../bower_components/react/react-dom',
 
-        'item': 'components/item'
+        'item': 'components/item',
+        'footer': 'components/footerPanel',
+        'header': 'components/header',
+        'content': 'components/content'
     }
 });
 
-require(['jquery','reactDOM','react', 'item'], function ($, ReactDOM, React, Item) {
+require(['jquery','reactDOM','react','header','content','footer'], function ($, ReactDOM, React, Header, Content, Footer) {
 
     ReactDOM.render(
-        <Item />,
-        $('#content')[0]
+        <section className="page">
+            <Header/>
+            <Content/>
+            <Footer/>
+        </section>,
+        $('body')[0]
     );
 
 });
