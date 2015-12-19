@@ -3,23 +3,26 @@ require.config({
         'jquery': '../../bower_components/jquery/dist/jquery.min',
         'react': '../../bower_components/react/react',
         'reactDOM': '../../bower_components/react/react-dom',
+        'Sortable': '../../bower_components/Sortable/Sortable.min',
+        'sortableMixin': '../../bower_components/Sortable/react-sortable-mixin',
 
-        'item': 'components/item',
-        'footer': 'components/footerPanel',
-        'header': 'components/header',
-        'content': 'components/content'
+        'App':'components/appComponent',
+        'Header': 'components/header',
+        'Content': 'components/content',
+        'Item': 'components/item',
+        'Footer': 'components/footerPanel',
+
+        'event': 'events/event',
+        'eventList': 'events/eventList'
     }
 });
 
-require(['jquery','reactDOM','react','header','content','footer'], function ($, ReactDOM, React, Header, Content, Footer) {
+require(['jquery', 'reactDOM', 'react','App'], function ($, ReactDOM, React, App) {
 
     ReactDOM.render(
-        <section className="page">
-            <Header/>
-            <Content/>
-            <Footer/>
-        </section>,
+        <App/>,
         $('body')[0]
     );
 
 });
+
