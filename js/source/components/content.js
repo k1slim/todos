@@ -41,7 +41,7 @@ define(['jquery', 'react', 'Sortable', 'sortableMixin', 'event', 'eventList', 'I
             render: function () {
                 return (
                     <div className="content" id="content">
-                        {this.state.items.map(item => <Item key={item.value} value={item.value}/>)}
+                        {this.state.items.map(item => <Item key={new Date + item.value} value={item.value}/>)}
                     </div>
                 );
             }

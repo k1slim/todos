@@ -6,18 +6,21 @@ require.config({
         'Sortable': '../../bower_components/Sortable/Sortable.min',
         'sortableMixin': '../../bower_components/Sortable/react-sortable-mixin',
 
-        'App':'components/appComponent',
+        'App': 'components/appComponent',
         'Header': 'components/header',
+        'Nav': 'components/nav',
+        'NavItem': 'components/navItem',
         'Content': 'components/content',
         'Item': 'components/item',
         'Footer': 'components/footerPanel',
+        'ContentEditable': 'components/contentEditable',
 
         'event': 'events/event',
         'eventList': 'events/eventList'
     }
 });
 
-require(['jquery', 'reactDOM', 'react','App'], function ($, ReactDOM, React, App) {
+require(['jquery', 'reactDOM', 'react', 'App'], function ($, ReactDOM, React, App) {
 
     ReactDOM.render(
         <App/>,

@@ -2,7 +2,9 @@ define([], function () {
 
     return {
         addItem: 'addItem',
-        deleteItem: 'deleteItem'
+        deleteItem: 'deleteItem',
+
+        addMenuItem: 'addMenuItem'
     };
 });
 

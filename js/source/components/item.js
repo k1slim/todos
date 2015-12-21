@@ -39,7 +39,7 @@ define(['jquery', 'react', 'event', 'eventList'],
                         <div className="itemDone" onClick={this.doneHandler}>
                             <img src="image/icons/done.png"/>
                         </div>
-                        <div className="itemText" contentEditable="true">
+                        <div className="itemText">
                             {this.state.value}
                         </div>
 

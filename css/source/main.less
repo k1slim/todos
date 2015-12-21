@@ -13,14 +13,25 @@ body {
 .header {
   position: fixed;
   width: 100%;
-  background: @textCol;
+  background: @backCol;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
   z-index: 1;
 
   .head {
-    padding: 20px;
-    background: @backCol;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+
+    .title {
+      text-align: center;
+    }
+
+    .addTabField {
+      .inputText;
+    }
 
     h1 {
       margin: 0;
@@ -37,10 +48,11 @@ body {
     .menuItem {
       flex-grow: 1;
       flex-basis: 0;
+      border-bottom: 2px solid @backCol;
       padding: 10px;
-      transform: skew(-30deg);
       text-align: center;
       overflow: hidden;
+      white-space: nowrap;
 
       &:hover {
         .hover
@@ -49,9 +61,9 @@ body {
       .menuItemText {
         display: block;
         text-decoration: none;
-        transform: skew(30deg);
         overflow: hidden;
         text-overflow: ellipsis;
+        color: @textCol;
       }
     }
   }
@@ -65,7 +77,7 @@ body {
   margin-bottom: 63px;
   padding: 20px 0;
 
-  .completed{
+  .completed {
     opacity: 0.25;
   }
 
@@ -109,7 +121,6 @@ body {
         width: 24px;
       }
     }
-
   }
 }
 
@@ -124,38 +135,26 @@ body {
 
   .textField {
     flex-grow: 1;
-    margin-left:10%;
+    margin: 0 10%;
 
-    input{
-      display: block;
-      width: 100%;
-      border: none;
-      border-bottom: 1px solid @textCol;
-      padding: 10px 10px 10px 5px;
-      background: @backCol;
-      font-size: 18px;
-      color:@textCol;
-
-      .placeholderColor(@textCol);
-
-      &:focus {
-        outline: none;
-        outline-offset: -2px;
-        border-bottom: 2px solid @textCol;
-
-      }
-    }
+    .inputText;
   }
-
-  .addButton {
-    margin: 0 10% 0 1rem;
-    .button;
-  }
-
 }
 
 @media screen and (max-width: 400px) {
   .header {
+    position: static;
+
+    .head {
+      width: 90%;
+      flex-direction: column;
+      padding: 10px 0 0 0;
+
+      div{
+        width: 100%;
+        flex-basis: auto;
+      }
+    }
 
     .nav {
       width: 90%;
@@ -164,17 +163,19 @@ body {
 
       .menuItem {
         flex-basis: auto;
-        transform: none;
-
-        .menuItemText {
-          transform: none;
-        }
       }
     }
   }
 
   .content {
+    position: static;
     width: 90%;
-    top: 219px;
+  }
+
+  .footer {
+    .textField {
+      margin: 0 5%;
+    }
   }
 }
+

@@ -40,9 +40,6 @@ define(['jquery', 'react', 'event', 'eventList'],
                             <input type="text" placeholder="Text here" value={this.state.value}
                                    onChange={this.onChangeHandler} onKeyPress={this.keyPressHandler}/>
                         </div>
-                        <div className="addButton" onClick={this.addItem}>
-                            ADD
-                        </div>
                     </footer>
                 );
             }
