@@ -16,6 +16,7 @@ define(['jquery', 'react', 'event', 'eventList'],
 
             getInitialState: function () {
                 return {
+                    id: this.props.id,
                     done: this.props.done,
                     value: this.props.value
                 };
@@ -23,10 +24,16 @@ define(['jquery', 'react', 'event', 'eventList'],
 
             doneHandler: function () {
                 this.setState({done: !this.state.done});
+                $.ajax({
+                    type: 'PUT',
+                    data: JSON.stringify({done: !this.state.done}),
+                    contentType: 'application/json',
+                    url: `/todos/${this.state.id}`
+                });
             },
 
             deleteHandler: function () {
-                event.trigger(eventList.deleteItem, this.state.value);
+                event.trigger(eventList.deleteItem, this.state.id);
             },
 
             setItemClass: function () {

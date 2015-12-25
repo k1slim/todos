@@ -1,6 +1,9 @@
+'use strict';
+
 (function () {
 
-    var express = require('express'),
+    const express = require('express'),
+        bodyParser = require('body-parser'),
         db=require('./js/mongoose'),
         config = require('./js/config'),
 
@@ -10,8 +13,14 @@
     app.listen(config.express.port);
 
     app.use(express.static(__dirname + '/public'));
+    app.use(bodyParser.json());
 
     app.route('/todos')
-        .get(db.getTodos);
+        .get(db.getTodos)
+        .post(db.createTodo);
+
+    app.route('/todos/:id')
+            .delete(db.deleteTodo)
+            .put(db.updateTodo);
 
 })();

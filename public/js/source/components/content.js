@@ -19,7 +19,6 @@ define(['jquery', 'react', 'Sortable', 'sortableMixin', 'event', 'eventList', 'I
             componentDidMount: function () {
                 $.get('/todos')
                     .then(data => this.setState({items: data}));
-
                 event.on(eventList.addItem, this.updateList);
                 event.on(eventList.deleteItem, this.deleteItem);
             },
@@ -30,21 +29,34 @@ define(['jquery', 'react', 'Sortable', 'sortableMixin', 'event', 'eventList', 'I
             },
 
             updateList: function (e, data) {
-                var newItems = this.state.items;
-                newItems.push(data);
+                var newItems = this.state.items,
+                    currentItem={id: `${Date.now()}${~~(Math.random() * 100)}`, value: data.value, tab: '1'};
+                newItems.push(currentItem);
                 this.setState({items: newItems});
+
+                $.ajax({
+                    type: 'POST',
+                    data: JSON.stringify(currentItem),
+                    contentType: 'application/json',
+                    url: '/todos'
+                });
             },
 
             deleteItem: function (e, data) {
                 var newItems = this.state.items;
-                newItems = newItems.filter(item => item.value !== data);
+                newItems = newItems.filter(item => item.id !== data);
                 this.setState({items: newItems});
+
+                $.ajax({
+                    type: 'DELETE',
+                    url: `/todos/${data}`
+                });
             },
 
             render: function () {
                 return (
                     <div className="content" id="content">
-                        {this.state.items.map(item => <Item key={new Date + item.value} value={item.value}
+                        {this.state.items.map(item => <Item id={item.id} key={item.id} value={item.value}
                                                             done={item.done}/>)}
                     </div>
                 );

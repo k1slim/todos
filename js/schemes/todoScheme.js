@@ -1,9 +1,12 @@
+'use strict';
+
 (function () {
-    var mongoose = require('mongoose'),
+    const mongoose = require('mongoose'),
         todo = mongoose.Schema({
+            id: {type: String, required: true, unique: true},
             value: String,
-            done: Boolean,
-            tab:String
+            done: {type: Boolean, default: false},
+            tab: String
         });
 
     module.exports = mongoose.model('Todo', todo);
