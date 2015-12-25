@@ -1,0 +1,30 @@
+.hover {
+  border-bottom: 2px solid #ffffff;
+  cursor: pointer;
+}
+.inputText input {
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ffffff;
+  padding: 10px 10px 10px 5px;
+  background: #2196f3;
+  font-size: 16px;
+  color: #ffffff;
+}
+.inputText input::-webkit-input-placeholder {
+  color: #ffffff;
+}
+.inputText input::-moz-placeholder {
+  color: #ffffff;
+}
+.inputText input:-moz-placeholder {
+  color: #ffffff;
+}
+.inputText input:-ms-input-placeholder {
+  color: #ffffff;
+}
+.inputText input:focus {
+  outline: none;
+  border-bottom: 2px solid #ffffff;
+}

@@ -1,6 +1,7 @@
 .idea
 *.iml
 css/compiled
-js/compiled
-bower_components
+public/js/compiled
+public/bower_components
+node_modules
 TODO

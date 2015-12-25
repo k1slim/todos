@@ -9,6 +9,7 @@ require.config({
         'App': 'components/appComponent',
         'Header': 'components/header',
         'Nav': 'components/nav',
+
         'NavItem': 'components/navItem',
         'Content': 'components/content',
         'Item': 'components/item',

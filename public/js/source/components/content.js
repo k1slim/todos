@@ -17,6 +17,9 @@ define(['jquery', 'react', 'Sortable', 'sortableMixin', 'event', 'eventList', 'I
             },
 
             componentDidMount: function () {
+                $.get('/todos')
+                    .then(data => this.setState({items: data}));
+
                 event.on(eventList.addItem, this.updateList);
                 event.on(eventList.deleteItem, this.deleteItem);
             },
@@ -34,14 +37,15 @@ define(['jquery', 'react', 'Sortable', 'sortableMixin', 'event', 'eventList', 'I
 
             deleteItem: function (e, data) {
                 var newItems = this.state.items;
-                newItems = newItems.filter(item=>item.value !== data);
+                newItems = newItems.filter(item => item.value !== data);
                 this.setState({items: newItems});
             },
 
             render: function () {
                 return (
                     <div className="content" id="content">
-                        {this.state.items.map(item => <Item key={new Date + item.value} value={item.value}/>)}
+                        {this.state.items.map(item => <Item key={new Date + item.value} value={item.value}
+                                                            done={item.done}/>)}
                     </div>
                 );
             }

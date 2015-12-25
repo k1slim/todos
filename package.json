@@ -1,0 +1,27 @@
+{
+  "name": "todos",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "postinstall": "bower install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k1slim/todos.git"
+  },
+  "author": "k1slim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/k1slim/todos/issues"
+  },
+  "homepage": "https://github.com/k1slim/todos#readme",
+  "dependencies": {
+    "express": "^4.13.3",
+    "mongoose": "^4.3.4"
+  },
+  "devDependencies": {},
+  "description": "ToDos by k1slim"
+}
+

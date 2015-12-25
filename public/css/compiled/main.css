@@ -1,0 +1,226 @@
+.hover {
+  border-bottom: 2px solid #ffffff;
+  cursor: pointer;
+}
+.inputText input {
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ffffff;
+  padding: 10px 10px 10px 5px;
+  background: #2196f3;
+  font-size: 16px;
+  color: #ffffff;
+}
+.inputText input::-webkit-input-placeholder {
+  color: #ffffff;
+}
+.inputText input::-moz-placeholder {
+  color: #ffffff;
+}
+.inputText input:-moz-placeholder {
+  color: #ffffff;
+}
+.inputText input:-ms-input-placeholder {
+  color: #ffffff;
+}
+.inputText input:focus {
+  outline: none;
+  border-bottom: 2px solid #ffffff;
+}
+* {
+  box-sizing: border-box;
+  font-family: "RobotoDraft", "Roboto", sans-serif;
+}
+body {
+  margin: 0;
+}
+.header {
+  position: fixed;
+  width: 100%;
+  background: #2196f3;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+  z-index: 1;
+}
+.header .head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: auto;
+  padding: 10px;
+}
+.header .head .title {
+  text-align: center;
+}
+.header .head .addTabField input {
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ffffff;
+  padding: 10px 10px 10px 5px;
+  background: #2196f3;
+  font-size: 16px;
+  color: #ffffff;
+}
+.header .head .addTabField input::-webkit-input-placeholder {
+  color: #ffffff;
+}
+.header .head .addTabField input::-moz-placeholder {
+  color: #ffffff;
+}
+.header .head .addTabField input:-moz-placeholder {
+  color: #ffffff;
+}
+.header .head .addTabField input:-ms-input-placeholder {
+  color: #ffffff;
+}
+.header .head .addTabField input:focus {
+  outline: none;
+  border-bottom: 2px solid #ffffff;
+}
+.header .head h1 {
+  margin: 0;
+  color: #ffffff;
+}
+.header .nav {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  padding: 0 12px;
+}
+.header .nav .menuItem {
+  flex-grow: 1;
+  flex-basis: 0;
+  border-bottom: 2px solid #2196f3;
+  padding: 10px;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.header .nav .menuItem:hover {
+  border-bottom: 2px solid #ffffff;
+  cursor: pointer;
+}
+.header .nav .menuItem .menuItemText {
+  display: block;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #ffffff;
+}
+.content {
+  position: relative;
+  top: 105px;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 63px;
+  padding: 20px 0;
+}
+.content .completed {
+  opacity: 0.25;
+}
+.content .item {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0 1rem 0;
+  padding: 16px;
+  border-radius: 2px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+.content .item .itemDone {
+  height: 24px;
+  margin-right: 20px;
+}
+.content .item .itemDone:hover {
+  border-bottom: 2px solid #ffffff;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.content .item .itemDone img {
+  width: 24px;
+}
+.content .item .itemText {
+  flex-grow: 1;
+  overflow: hidden;
+}
+.content .item .itemDelete {
+  height: 24px;
+  margin-left: 20px;
+}
+.content .item .itemDelete:hover {
+  border-bottom: 2px solid #ffffff;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.content .item .itemDelete img {
+  width: 24px;
+}
+.footer {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #2196f3;
+  padding: 10px 0;
+}
+.footer .textField {
+  flex-grow: 1;
+  margin: 0 10%;
+}
+.footer .textField input {
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ffffff;
+  padding: 10px 10px 10px 5px;
+  background: #2196f3;
+  font-size: 16px;
+  color: #ffffff;
+}
+.footer .textField input::-webkit-input-placeholder {
+  color: #ffffff;
+}
+.footer .textField input::-moz-placeholder {
+  color: #ffffff;
+}
+.footer .textField input:-moz-placeholder {
+  color: #ffffff;
+}
+.footer .textField input:-ms-input-placeholder {
+  color: #ffffff;
+}
+.footer .textField input:focus {
+  outline: none;
+  border-bottom: 2px solid #ffffff;
+}
+@media screen and (max-width: 400px) {
+  .header {
+    position: static;
+  }
+  .header .head {
+    width: 90%;
+    flex-direction: column;
+    padding: 10px 0 0 0;
+  }
+  .header .head div {
+    width: 100%;
+    flex-basis: auto;
+  }
+  .header .nav {
+    width: 90%;
+    flex-direction: column;
+    padding: 0;
+  }
+  .header .nav .menuItem {
+    flex-basis: auto;
+  }
+  .content {
+    position: static;
+    width: 90%;
+  }
+  .footer .textField {
+    margin: 0 5%;
+  }
+}
