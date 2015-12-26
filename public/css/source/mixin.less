@@ -25,6 +25,17 @@
   }
 }
 
+.contentEditableInput{
+    display: block;
+    width: 100%;
+    border: none;
+    font-size: 16px;
+
+    &:focus {
+      outline: none;
+    }
+}
+
 .placeholderColor(@col){
   &::-webkit-input-placeholder {color:@col}
   &::-moz-placeholder          {color:@col}

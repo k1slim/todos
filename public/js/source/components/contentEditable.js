@@ -4,31 +4,43 @@ define(['react'],
         return React.createClass({
             displayName: 'ContentEditable',
 
-            render: function () {
-                return <span
-                    className="menuItemText"
-                    onInput={this.emitChange}
-                    onBlur={this.emitChange}
-                    contentEditable="true"
-                    dangerouslySetInnerHTML={{__html: this.props.html}}>
-                </span>;
+            getInitialState: function () {
+                return {
+                    editable: false,
+                    value: this.props.value
+                };
             },
 
-            shouldComponentUpdate: function (nextProps) {
-                return nextProps.html !== this.findDOMNode().innerHTML;
-            },
-
-            emitChange: function () {
-                var html = this.findDOMNode().innerHTML;
-                if (this.props.onChange && html !== this.lastHtml) {
-
-                    this.props.onChange({
-                        target: {
-                            value: html
-                        }
-                    });
+            toggle: function () {
+                var editable = this.state.editable;
+                this.setState({editable: !editable});
+                if (editable) {
+                    this.props.updateValue(this.state.value);
                 }
-                this.lastHtml = html;
+            },
+
+            onChangeHandler: function (e) {
+                this.setState({value: e.target.value});
+            },
+
+            keyPressHandler: function (e) {
+                if (e.which === 13) {
+                    this.toggle();
+                }
+            },
+
+            render: function () {
+                return this.state.editable ? (
+                    <input className="contentEditable"
+                        autoFocus="true"
+                           type="text"
+                           ref="textInput"
+                           value={this.state.value}
+                           onChange={this.onChangeHandler}
+                           onKeyPress={this.keyPressHandler}
+                           onBlur={this.toggle}
+                    />) : (
+                    <span className={this.props.className} onClick={this.toggle}> {this.state.value} </span>);
             }
         });
 

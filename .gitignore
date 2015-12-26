@@ -1,6 +1,7 @@
 .idea
 *.iml
-css/compiled
+.babelrc
+public/css/compiled
 public/js/compiled
 public/bower_components
 node_modules

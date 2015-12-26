@@ -1,5 +1,5 @@
-define(['jquery', 'react', 'event', 'eventList'],
-    function ($, React, event, eventList) {
+define(['jquery', 'react', 'ContentEditable', 'event', 'eventList'],
+    function ($, React, ContentEditable, event, eventList) {
 
         return React.createClass({
             displayName: 'Item',
@@ -20,6 +20,15 @@ define(['jquery', 'react', 'event', 'eventList'],
                     done: this.props.done,
                     value: this.props.value
                 };
+            },
+
+            updateValue: function (data) {
+                $.ajax({
+                    type: 'PUT',
+                    data: JSON.stringify({value: data}),
+                    contentType: 'application/json',
+                    url: `/todos/${this.state.id}`
+                });
             },
 
             doneHandler: function () {
@@ -46,10 +55,7 @@ define(['jquery', 'react', 'event', 'eventList'],
                         <div className="itemDone" onClick={this.doneHandler}>
                             <img src="image/icons/done.png"/>
                         </div>
-                        <div className="itemText">
-                            {this.state.value}
-                        </div>
-
+                        <ContentEditable className="itemText" value={this.state.value} updateValue={this.updateValue}/>
                         <div className="itemDelete" onClick={this.deleteHandler}>
                             <img src="image/icons/delete.png"/>
                         </div>

@@ -55,7 +55,7 @@ body {
       white-space: nowrap;
 
       &:hover {
-        .hover
+        .hover;
       }
 
       .menuItemText {
@@ -88,6 +88,10 @@ body {
     padding: 16px;
     border-radius: @borderRad;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+
+    .contentEditable {
+      .contentEditableInput;
+    }
 
     .itemDone {
       height: 24px;
@@ -150,7 +154,7 @@ body {
       flex-direction: column;
       padding: 10px 0 0 0;
 
-      div{
+      div {
         width: 100%;
         flex-basis: auto;
       }

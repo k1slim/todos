@@ -30,7 +30,7 @@ define(['jquery', 'react', 'Sortable', 'sortableMixin', 'event', 'eventList', 'I
 
             updateList: function (e, data) {
                 var newItems = this.state.items,
-                    currentItem={id: `${Date.now()}${~~(Math.random() * 100)}`, value: data.value, tab: '1'};
+                    currentItem = {id: `${Date.now()}${~~(Math.random() * 100)}`, value: data.value, tab: '1'};
                 newItems.push(currentItem);
                 this.setState({items: newItems});
 
