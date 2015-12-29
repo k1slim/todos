@@ -1,5 +1,5 @@
-define(['jquery', 'react', 'Sortable', 'sortableMixin', 'event', 'eventList', 'Item'],
-    function ($, React, Sortable, SortableMixin, event, eventList, Item) {
+define(['react', 'Sortable', 'sortableMixin', 'Item', 'Store'],
+    function (React, Sortable, SortableMixin, Item, Store) {
 
         return React.createClass({
             displayName: 'Content',
@@ -17,40 +17,15 @@ define(['jquery', 'react', 'Sortable', 'sortableMixin', 'event', 'eventList', 'I
             },
 
             componentDidMount: function () {
-                $.get('/todos')
-                    .then(data => this.setState({items: data}));
-                event.on(eventList.addItem, this.updateList);
-                event.on(eventList.deleteItem, this.deleteItem);
+                Store.addTodoChangeListener(this._updateList);
             },
 
             componentWillUnmount: function () {
-                event.off(eventList.addItem, this.updateList);
-                event.off(eventList.deleteItem, this.deleteItem);
+                Store.removeTodoChangeListener(this._updateList);
             },
 
-            updateList: function (e, data) {
-                var newItems = this.state.items,
-                    currentItem = {id: `${Date.now()}${~~(Math.random() * 100)}`, value: data.value, tab: '1'};
-                newItems.push(currentItem);
-                this.setState({items: newItems});
-
-                $.ajax({
-                    type: 'POST',
-                    data: JSON.stringify(currentItem),
-                    contentType: 'application/json',
-                    url: '/todos'
-                });
-            },
-
-            deleteItem: function (e, data) {
-                var newItems = this.state.items;
-                newItems = newItems.filter(item => item.id !== data);
-                this.setState({items: newItems});
-
-                $.ajax({
-                    type: 'DELETE',
-                    url: `/todos/${data}`
-                });
+            _updateList: function () {
+                this.setState({items: Store.getTodos()});
             },
 
             render: function () {

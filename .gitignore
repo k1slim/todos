@@ -3,6 +3,6 @@
 .babelrc
 public/css/compiled
 public/js/compiled
-public/bower_components
+public/bower_components/
 node_modules
 TODO

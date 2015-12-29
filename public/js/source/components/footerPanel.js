@@ -1,5 +1,5 @@
-define(['jquery', 'react', 'event', 'eventList'],
-    function ($, React, event, eventList) {
+define(['react', 'Actions'],
+    function (React, Actions) {
 
         return React.createClass({
             displayName: 'Footer',
@@ -10,26 +10,17 @@ define(['jquery', 'react', 'event', 'eventList'],
                 };
             },
 
-            addItem: function () {
-                const minLength = 0,
-                    maxLength = 250;
-
-                if (this.state.value.length > minLength && this.state.value.length <= maxLength) {
-                    event.trigger(eventList.addItem, {value: this.state.value.trim()});
-                    this.setState({value: ''});
-                }
-                else {
-                    return false;
-                }
+            _addItem: function () {
+                Actions.createTodo(this.state.value);
             },
 
-            onChangeHandler: function (e) {
-                this.setState({value: e.target.value});
+            _onChange: function (event) {
+                this.setState({value: event.target.value});
             },
 
-            keyPressHandler: function (e) {
-                if (e.which === 13) {
-                    this.addItem();
+            _onKeyPress: function (event) {
+                if (event.which === 13) {
+                    this._addItem();
                 }
             },
 
@@ -38,7 +29,7 @@ define(['jquery', 'react', 'event', 'eventList'],
                     <footer className="footer">
                         <div className="textField">
                             <input type="text" placeholder="Text here" value={this.state.value}
-                                   onChange={this.onChangeHandler} onKeyPress={this.keyPressHandler}/>
+                                   onChange={this._onChange} onKeyPress={this._onKeyPress}/>
                         </div>
                     </footer>
                 );

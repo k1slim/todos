@@ -1,5 +1,5 @@
-define(['react', 'Nav', 'event', 'eventList'],
-    function (React, Nav, event, eventList) {
+define(['react', 'Nav','Actions'],
+    function (React, Nav, Actions) {
 
         return React.createClass({
             displayName: 'Header',
@@ -10,26 +10,17 @@ define(['react', 'Nav', 'event', 'eventList'],
                 };
             },
 
-            addItem: function () {
-                const minLength = 0,
-                    maxLength = 60;
-
-                if (this.state.value.length > minLength && this.state.value.length <= maxLength) {
-                    event.trigger(eventList.addMenuItem, {value: this.state.value.trim()});
-                    this.setState({value: ''});
-                }
-                else {
-                    return false;
-                }
+            _addItem: function () {
+                Actions.createTab(this.state.value);
             },
 
-            onChangeHandler: function (e) {
-                this.setState({value: e.target.value});
+            _onChange: function (event) {
+                this.setState({value: event.target.value});
             },
 
-            keyPressHandler: function (e) {
-                if (e.which === 13) {
-                    this.addItem();
+            _onKeyPress: function (event) {
+                if (event.which === 13) {
+                    this._addItem();
                 }
             },
 
@@ -44,7 +35,7 @@ define(['react', 'Nav', 'event', 'eventList'],
                             </div>
                             <div className="addTabField">
                                 <input type="text" placeholder="Tab name" value={this.state.value}
-                                       onChange={this.onChangeHandler} onKeyPress={this.keyPressHandler}/>
+                                       onChange={this._onChange} onKeyPress={this._onKeyPress}/>
                             </div>
                         </div>
 

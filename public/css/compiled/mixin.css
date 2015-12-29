@@ -32,6 +32,7 @@
   display: block;
   width: 100%;
   border: none;
+  background: inherit;
   font-size: 16px;
 }
 .contentEditableInput:focus {

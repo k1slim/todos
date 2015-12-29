@@ -1,6 +1,8 @@
 define(['react'],
     function (React) {
 
+        const enterKeyCode = 13;
+
         return React.createClass({
             displayName: 'ContentEditable',
 
@@ -11,7 +13,7 @@ define(['react'],
                 };
             },
 
-            toggle: function () {
+            _toggle: function () {
                 var editable = this.state.editable;
                 this.setState({editable: !editable});
                 if (editable) {
@@ -19,28 +21,28 @@ define(['react'],
                 }
             },
 
-            onChangeHandler: function (e) {
-                this.setState({value: e.target.value});
+            _onChange: function (event) {
+                this.setState({value: event.target.value});
             },
 
-            keyPressHandler: function (e) {
-                if (e.which === 13) {
-                    this.toggle();
+            _onKeyPress: function (event) {
+                if (event.which === enterKeyCode) {
+                    this._toggle();
                 }
             },
 
             render: function () {
                 return this.state.editable ? (
-                    <input className="contentEditable"
-                        autoFocus="true"
+                    <input className={this.props.inputClassName}
+                           autoFocus={true}
                            type="text"
-                           ref="textInput"
                            value={this.state.value}
-                           onChange={this.onChangeHandler}
-                           onKeyPress={this.keyPressHandler}
-                           onBlur={this.toggle}
+                           onChange={this._onChange}
+                           onKeyPress={this._onKeyPress}
+                           onBlur={this._toggle}
+
                     />) : (
-                    <span className={this.props.className} onClick={this.toggle}> {this.state.value} </span>);
+                    <span className={this.props.className} onDoubleClick={this._toggle}> {this.state.value} </span>);
             }
         });
 

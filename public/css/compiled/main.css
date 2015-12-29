@@ -32,6 +32,7 @@
   display: block;
   width: 100%;
   border: none;
+  background: inherit;
   font-size: 16px;
 }
 .contentEditableInput:focus {
@@ -137,15 +138,6 @@ body {
   border-radius: 2px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
-.content .item .contentEditable {
-  display: block;
-  width: 100%;
-  border: none;
-  font-size: 16px;
-}
-.content .item .contentEditable:focus {
-  outline: none;
-}
 .content .item .itemDone {
   height: 24px;
   margin-right: 20px;
@@ -241,4 +233,18 @@ body {
   .footer .textField {
     margin: 0 5%;
   }
+}
+.contentEditable {
+  display: block;
+  width: 100%;
+  border: none;
+  background: inherit;
+  font-size: 16px;
+}
+.contentEditable:focus {
+  outline: none;
+}
+.contentEditableTab {
+  text-align: center;
+  color: #ffffff;
 }

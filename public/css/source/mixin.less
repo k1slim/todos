@@ -1,11 +1,11 @@
 @import "var";
 
-.hover{
+.hover {
   border-bottom: 2px solid @textCol;
   cursor: pointer;
 }
 
-.inputText{
+.inputText {
   input {
     display: block;
     width: 100%;
@@ -25,20 +25,29 @@
   }
 }
 
-.contentEditableInput{
-    display: block;
-    width: 100%;
-    border: none;
-    font-size: 16px;
+.contentEditableInput {
+  display: block;
+  width: 100%;
+  border: none;
+  background: inherit;
+  font-size: 16px;
 
-    &:focus {
-      outline: none;
-    }
+  &:focus {
+    outline: none;
+  }
 }
 
-.placeholderColor(@col){
-  &::-webkit-input-placeholder {color:@col}
-  &::-moz-placeholder          {color:@col}
-  &:-moz-placeholder           {color:@col}
-  &:-ms-input-placeholder      {color:@col}
+.placeholderColor(@col) {
+  &::-webkit-input-placeholder {
+    color: @col
+  }
+  &::-moz-placeholder {
+    color: @col
+  }
+  &:-moz-placeholder {
+    color: @col
+  }
+  &:-ms-input-placeholder {
+    color: @col
+  }
 }

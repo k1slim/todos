@@ -1,62 +1,33 @@
-define(['jquery', 'react', 'ContentEditable', 'event', 'eventList'],
-    function ($, React, ContentEditable, event, eventList) {
+define(['react', 'ContentEditable', 'Actions'],
+    function (React, ContentEditable, Actions) {
 
         return React.createClass({
             displayName: 'Item',
 
-            propTypes: {
-                value: React.PropTypes.string.isRequired
+            _updateValue: function (value) {
+                Actions.updateTodo(this.props.id, value);
             },
 
-            getDefaultProps: function () {
-                return {
-                    done: false
-                };
+            _doneHandler: function () {
+                Actions.toggleTodo(this.props.id);
             },
 
-            getInitialState: function () {
-                return {
-                    id: this.props.id,
-                    done: this.props.done,
-                    value: this.props.value
-                };
+            _deleteHandler: function () {
+                Actions.deleteTodo(this.props.id);
             },
 
-            updateValue: function (data) {
-                $.ajax({
-                    type: 'PUT',
-                    data: JSON.stringify({value: data}),
-                    contentType: 'application/json',
-                    url: `/todos/${this.state.id}`
-                });
-            },
-
-            doneHandler: function () {
-                this.setState({done: !this.state.done});
-                $.ajax({
-                    type: 'PUT',
-                    data: JSON.stringify({done: !this.state.done}),
-                    contentType: 'application/json',
-                    url: `/todos/${this.state.id}`
-                });
-            },
-
-            deleteHandler: function () {
-                event.trigger(eventList.deleteItem, this.state.id);
-            },
-
-            setItemClass: function () {
-                return this.state.done ? 'item completed' : 'item';
+            _setItemClass: function () {
+                return this.props.done ? 'item completed' : 'item';
             },
 
             render: function () {
                 return (
-                    <div className={this.setItemClass()}>
-                        <div className="itemDone" onClick={this.doneHandler}>
+                    <div className={this._setItemClass()}>
+                        <div className="itemDone" onClick={this._doneHandler}>
                             <img src="image/icons/done.png"/>
                         </div>
-                        <ContentEditable className="itemText" value={this.state.value} updateValue={this.updateValue}/>
-                        <div className="itemDelete" onClick={this.deleteHandler}>
+                        <ContentEditable className="itemText" inputClassName="contentEditable" value={this.props.value} updateValue={this._updateValue}/>
+                        <div className="itemDelete" onClick={this._deleteHandler}>
                             <img src="image/icons/delete.png"/>
                         </div>
                     </div>

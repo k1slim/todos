@@ -1,5 +1,5 @@
-define(['react', 'event', 'eventList', 'NavItem'],
-    function (React, event, eventList, NavItem) {
+define(['react', 'NavItem', 'Store'],
+    function (React, NavItem, Store) {
 
         return React.createClass({
             displayName: 'Nav',
@@ -11,23 +11,21 @@ define(['react', 'event', 'eventList', 'NavItem'],
             },
 
             componentDidMount: function () {
-                event.on(eventList.addMenuItem, this.updateList);
+                Store.addTabChangeListener(this._updateList);
             },
 
             componentWillUnmount: function () {
-                event.off(eventList.addMenuItem, this.updateList);
+                Store.removeTabChangeListener(this._updateList);
             },
 
-            updateList: function (e, data) {
-                var newItems = this.state.items;
-                newItems.push(data);
-                this.setState({items: newItems});
+            _updateList: function () {
+                this.setState({items: Store.getTabs()});
             },
 
             render: function () {
                 return (
                     <nav className="nav">
-                        {this.state.items.map(item => <NavItem key={new Date + item.value} value={item.value}/>)}
+                        {this.state.items.map(item => <NavItem id={item.id} key={item.id} value={item.value}/>)}
                     </nav>
                 );
             }

@@ -1,25 +1,17 @@
-define(['react'],
-    function (React) {
+define(['react','ContentEditable','Actions'],
+    function (React,ContentEditable, Actions) {
 
         return React.createClass({
             displayName: 'NavItem',
 
-            propTypes: {
-                value: React.PropTypes.string.isRequired
-            },
-
-            getInitialState: function () {
-                return {
-                    value: this.props.value
-                };
+            _updateValue: function (value) {
+                Actions.updateTab(this.props.id, value);
             },
 
             render: function () {
                 return (
                     <div className="menuItem">
-                        <span className="menuItemText">
-                            {this.state.value}
-                        </span>
+                        <ContentEditable className="menuItemText" inputClassName="contentEditable contentEditableTab" value={this.props.value} updateValue={this._updateValue}/>
                     </div>
                 );
             }
