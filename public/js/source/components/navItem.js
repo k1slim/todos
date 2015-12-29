@@ -1,5 +1,5 @@
-define(['react','ContentEditable','Actions'],
-    function (React,ContentEditable, Actions) {
+define(['react', 'ContentEditable', 'Actions'],
+    function (React, ContentEditable, Actions) {
 
         return React.createClass({
             displayName: 'NavItem',
@@ -11,7 +11,8 @@ define(['react','ContentEditable','Actions'],
             render: function () {
                 return (
                     <div className="menuItem">
-                        <ContentEditable className="menuItemText" inputClassName="contentEditable contentEditableTab" value={this.props.value} updateValue={this._updateValue}/>
+                        <ContentEditable className="menuItemText" inputClassName="contentEditable contentEditableTab"
+                                         value={this.props.value} updateValue={this._updateValue}/>
                     </div>
                 );
             }

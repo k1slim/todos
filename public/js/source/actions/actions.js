@@ -38,7 +38,7 @@ define(['Dispatcher', 'Constants'],
                 })
             },
 
-            updateTab: function (id ,value) {
+            updateTab: function (id, value) {
                 Dispatcher.dispatch({
                     actionType: Constants.TAB_UPDATE,
                     id: id,

@@ -1,4 +1,4 @@
-define(['react', 'Nav','Actions'],
+define(['react', 'Nav', 'Actions'],
     function (React, Nav, Actions) {
 
         return React.createClass({

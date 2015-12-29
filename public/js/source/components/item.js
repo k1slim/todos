@@ -26,7 +26,8 @@ define(['react', 'ContentEditable', 'Actions'],
                         <div className="itemDone" onClick={this._doneHandler}>
                             <img src="image/icons/done.png"/>
                         </div>
-                        <ContentEditable className="itemText" inputClassName="contentEditable" value={this.props.value} updateValue={this._updateValue}/>
+                        <ContentEditable className="itemText" inputClassName="contentEditable" value={this.props.value}
+                                         updateValue={this._updateValue}/>
                         <div className="itemDelete" onClick={this._deleteHandler}>
                             <img src="image/icons/delete.png"/>
                         </div>

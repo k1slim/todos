@@ -5,7 +5,8 @@ define(['jquery', 'eventEmitter', 'Dispatcher', 'Constants'],
             CHANGE_TAB_EVENT = 'changeTab';
 
         var todos = [],
-            tabs=[],
+            tabs = [],
+            selected,
             Store;
 
         $.get('/todos')
@@ -71,7 +72,7 @@ define(['jquery', 'eventEmitter', 'Dispatcher', 'Constants'],
             });
         }
 
-        function createTab(value){
+        function createTab(value) {
             var currentTab = {
                 id: `${Date.now()}${~~(Math.random() * 100)}`,
                 value: value
@@ -79,7 +80,7 @@ define(['jquery', 'eventEmitter', 'Dispatcher', 'Constants'],
             tabs.push(currentTab);
         }
 
-        function updateTab(id, value){
+        function updateTab(id, value) {
             tabs.forEach(item => {
                 if (item.id === id) {
                     item.value = value;
@@ -118,6 +119,10 @@ define(['jquery', 'eventEmitter', 'Dispatcher', 'Constants'],
 
             removeTabChangeListener: function (callback) {
                 this.removeListener(CHANGE_TAB_EVENT, callback);
+            },
+
+            getSelected(){
+                return selected;
             }
         });
 
