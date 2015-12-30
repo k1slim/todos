@@ -5,6 +5,7 @@
         mongoose = require('mongoose'),
 
         Todo = require('.././js/schemes/todoScheme'),
+        Tab = require('.././js/schemes/tabScheme'),
 
         dbUrl = process.env.MONGOLAB_URI ||
             process.env.MONGOHQ_URL ||
@@ -23,8 +24,21 @@
         console.log("Connected to DB!");
     });
 
+    (function initializeTabs() {
+        Tab.find().select('-_id -__v')
+            .then(data => {
+                if (data.length === 0) {
+                    new Tab({
+                        id: `${Date.now()}${~~(Math.random() * 100)}`,
+                        value: 'Default'
+                    }).save();
+                }
+            })
+            .then(null, err => next(err));
+    })();
+
     function getTodos(req, res, next) {
-        Todo.find().select('-_id -__v')
+        Todo.find({tab: req.params.tab}).select('-_id -__v')
             .then(data => res.json(data))
             .then(null, err => next(err));
     }
@@ -47,10 +61,39 @@
             .then(null, err => next(err));
     }
 
+    function getTabs(req, res, next) {
+        Tab.find().select('-_id -__v')
+            .then(data => res.json(data))
+            .then(null, err => next(err));
+    }
+
+    function createTab(req, res, next) {
+        new Tab(req.body).save()
+            .then(()=> res.json({success: true}))
+            .then(null, err => next(err));
+    }
+
+    function deleteTab(req, res, next) {
+        Tab.findOneAndRemove({id: req.params.id})
+            .then(() => res.json({success: true}))
+            .then(null, err => next(err));
+    }
+
+    function updateTab(req, res, next) {
+        Tab.findOneAndUpdate({id: req.params.id}, req.body)
+            .then(() => res.json({success: true}))
+            .then(null, err => next(err));
+    }
+
     module.exports = {
         getTodos: getTodos,
         createTodo: createTodo,
         deleteTodo: deleteTodo,
-        updateTodo: updateTodo
+        updateTodo: updateTodo,
+
+        getTabs: getTabs,
+        createTab: createTab,
+        deleteTab: deleteTab,
+        updateTab: updateTab
     };
 })();

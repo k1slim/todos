@@ -44,6 +44,13 @@ define(['Dispatcher', 'Constants'],
                     id: id,
                     value: value
                 })
+            },
+
+            selectTab: function (id) {
+                Dispatcher.dispatch({
+                    actionType: Constants.TAB_SELECT,
+                    id: id
+                })
             }
         }
     });

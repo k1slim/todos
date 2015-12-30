@@ -1,43 +1,35 @@
-define(['jquery', 'eventEmitter', 'Dispatcher', 'Constants'],
-    function ($, eventEmitter, Dispatcher, Constants) {
+define(['queries', 'eventEmitter', 'Dispatcher', 'Constants'],
+    function (queries, eventEmitter, Dispatcher, Constants) {
 
         const CHANGE_TODO_EVENT = 'changeTodo',
             CHANGE_TAB_EVENT = 'changeTab';
 
         var todos = [],
             tabs = [],
-            selected,
+            selectedTab = -1,
             Store;
-
-        $.get('/todos')
-            .then(data => {
-                todos = data;
-                Store.emitTodoChange();
-            });
 
         function createTodo(value) {
             var currentTodo = {
                 id: `${Date.now()}${~~(Math.random() * 100)}`,
                 value: value,
-                tab: '1'
+                tab: selectedTab
             };
             todos.push(currentTodo);
-            $.ajax({
-                type: 'POST',
-                data: JSON.stringify(currentTodo),
-                contentType: 'application/json',
-                url: '/todos'
-            });
-            //TODO сделать общую загрузку по табу
+            queries.createTodo(currentTodo);
         }
 
         function deleteTodo(id) {
             todos = todos.filter(item => item.id !== id);
+            queries.deleteTodo(id);
 
-            $.ajax({
-                type: 'DELETE',
-                url: `/todos/${id}`
-            });
+            if (isAllTodosDeleted()) {
+                deleteTab(selectedTab);
+                setSelectTab(tabs[0].id);
+                setSelectedIntoLocalStorage();
+                getTodoForTab();
+                Store.emitTabChange();
+            }
         }
 
         function updateTodo(id, value) {
@@ -46,13 +38,7 @@ define(['jquery', 'eventEmitter', 'Dispatcher', 'Constants'],
                     item.value = value;
                 }
             });
-
-            $.ajax({
-                type: 'PUT',
-                data: JSON.stringify({value: value}),
-                contentType: 'application/json',
-                url: `/todos/${id}`
-            });
+            queries.updateTodo(id, value);
         }
 
         function toggleTodo(id) {
@@ -63,13 +49,11 @@ define(['jquery', 'eventEmitter', 'Dispatcher', 'Constants'],
                     item.done = currentDone;
                 }
             });
+            queries.toggleTodo(id, currentDone);
+        }
 
-            $.ajax({
-                type: 'PUT',
-                data: JSON.stringify({done: currentDone}),
-                contentType: 'application/json',
-                url: `/todos/${id}`
-            });
+        function isAllTodosDeleted() {
+            return todos.length === 0;
         }
 
         function createTab(value) {
@@ -78,6 +62,10 @@ define(['jquery', 'eventEmitter', 'Dispatcher', 'Constants'],
                 value: value
             };
             tabs.push(currentTab);
+            queries.createTab(currentTab);
+            setSelectTab(currentTab.id);
+            setSelectedIntoLocalStorage();
+            getTodoForTab();
         }
 
         function updateTab(id, value) {
@@ -86,9 +74,55 @@ define(['jquery', 'eventEmitter', 'Dispatcher', 'Constants'],
                     item.value = value;
                 }
             });
+            queries.updateTab(id, value);
+        }
+
+        function deleteTab(id) {
+            if (tabs.length > 1) {
+                tabs = tabs.filter(item => item.id !== id);
+                queries.deleteTab(id);
+            }
+        }
+
+        function setSelectTab(id) {
+            selectedTab = id;
+        }
+
+        function getTodoForTab() {
+            queries.getTodos(selectedTab)
+                .then(data => {
+                    todos = data;
+                    Store.emitTodoChange();
+                });
+        }
+
+        function setSelectedIntoLocalStorage() {
+            localStorage.setItem('selectedTab', selectedTab);
+        }
+
+        function getSelectedFromLocalStorage() {
+            return localStorage.getItem('selectedTab');
         }
 
         Store = Object.assign({}, eventEmitter.prototype, {
+
+            initializeStore: function () {
+                queries.getTabs()
+                    .then(data => {
+                        tabs = data;
+                        let currentSelectedTab = getSelectedFromLocalStorage();
+                        if (currentSelectedTab && tabs.some(item => item.id === currentSelectedTab)) {
+                            setSelectTab(currentSelectedTab);
+                        }
+                        else {
+                            setSelectTab(tabs[0].id);
+                            setSelectedIntoLocalStorage();
+                        }
+                        getTodoForTab();
+                        Store.emitTabChange();
+                    });
+            },
+
             getTodos: function () {
                 return todos;
             },
@@ -122,7 +156,7 @@ define(['jquery', 'eventEmitter', 'Dispatcher', 'Constants'],
             },
 
             getSelected(){
-                return selected;
+                return selectedTab;
             }
         });
 
@@ -167,6 +201,13 @@ define(['jquery', 'eventEmitter', 'Dispatcher', 'Constants'],
 
                 case Constants.TAB_UPDATE:
                     updateTab(action.id, action.value);
+                    Store.emitTabChange();
+                    break;
+
+                case Constants.TAB_SELECT:
+                    setSelectTab(action.id);
+                    setSelectedIntoLocalStorage();
+                    getTodoForTab();
                     Store.emitTabChange();
                     break;
 

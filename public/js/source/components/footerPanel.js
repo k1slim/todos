@@ -12,6 +12,7 @@ define(['react', 'Actions'],
 
             _addItem: function () {
                 Actions.createTodo(this.state.value);
+                this.setState({value: ''});
             },
 
             _onChange: function (event) {

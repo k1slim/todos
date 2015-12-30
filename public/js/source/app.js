@@ -1,12 +1,12 @@
 require.config({
     paths: {
-        'jquery': '../../bower_components/jquery/dist/jquery.min',
+        'jquery': '../../bower_components/jquery/dist/jquery',
         'react': '../../bower_components/react/react',
         'reactDOM': '../../bower_components/react/react-dom',
         'flux': '../../bower_components/flux/dist/Flux',
         'eventEmitter': '../../bower_components/eventEmitter/EventEmitter',
-        'Sortable': '../../bower_components/Sortable/Sortable.min',
-        'sortableMixin': '../../bower_components/Sortable/react-sortable-mixin',
+
+        //Todo local libraries must replaced to CDN on production. In index.html too
 
         'App': 'components/appComponent',
         'Header': 'components/header',
@@ -20,16 +20,21 @@ require.config({
         'Dispatcher': 'dispatcher/dispatcher',
         'Actions': 'actions/actions',
         'Store': 'stores/store',
-        'Constants': 'constants/constants'
+        'Constants': 'constants/constants',
+
+        'queries': 'queries'
     }
 });
 
-require(['reactDOM', 'react', 'App'], function (ReactDOM, React, App) {
+require(['reactDOM', 'react', 'Store', 'App'],
+    function (ReactDOM, React, Store, App) {
 
-    ReactDOM.render(
-        <App/>,
-        document.getElementById('body')
-    );
+        Store.initializeStore();
 
-});
+        ReactDOM.render(
+            <App/>,
+            document.getElementById('body')
+        );
+
+    });
 

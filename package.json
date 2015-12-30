@@ -4,8 +4,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "postinstall": "bower install"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -18,10 +17,10 @@
   },
   "homepage": "https://github.com/k1slim/todos#readme",
   "dependencies": {
+    "body-parser": "^1.14.2",
     "express": "^4.13.3",
     "mongoose": "^4.3.4"
   },
   "devDependencies": {},
   "description": "ToDos by k1slim"
 }
-

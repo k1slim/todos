@@ -119,6 +119,9 @@ body {
   text-overflow: ellipsis;
   color: #ffffff;
 }
+.header .nav .selectedMenuItem {
+  border-bottom: 2px solid yellow;
+}
 .content {
   position: relative;
   top: 105px;

@@ -1,14 +1,8 @@
-define(['react', 'Sortable', 'sortableMixin', 'Item', 'Store'],
-    function (React, Sortable, SortableMixin, Item, Store) {
+define(['react', 'Item', 'Store'],
+    function (React, Item, Store) {
 
         return React.createClass({
             displayName: 'Content',
-
-            mixins: [SortableMixin],
-
-            sortableOptions: {
-                scrollSensitivity: 100
-            },
 
             getInitialState: function () {
                 return {
@@ -18,6 +12,7 @@ define(['react', 'Sortable', 'sortableMixin', 'Item', 'Store'],
 
             componentDidMount: function () {
                 Store.addTodoChangeListener(this._updateList);
+
             },
 
             componentWillUnmount: function () {

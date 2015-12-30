@@ -11,7 +11,8 @@ define(['react', 'Nav', 'Actions'],
             },
 
             _addItem: function () {
-                Actions.createTab(this.state.value);
+                Actions.createTab(this.state.value.trim());
+                this.setState({value: ''});
             },
 
             _onChange: function (event) {

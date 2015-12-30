@@ -6,6 +6,7 @@ define(function () {
         TODO_TOGGLE: 'TODO_TOGGLE',
 
         TAB_CREATE: 'TAB_CREATE',
-        TAB_UPDATE: 'TAB_UPDATE'
+        TAB_UPDATE: 'TAB_UPDATE',
+        TAB_SELECT: 'TAB_SELECT'
     };
 });
