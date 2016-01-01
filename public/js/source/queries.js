@@ -1,20 +1,50 @@
-define(['jquery'],
-    function ($) {
+define(function () {
 
         function query(type, url, data) {
             type = type.toUpperCase();
 
-            $.ajax({
+            return xhr({
                 type: type,
                 data: JSON.stringify(data),
-                contentType: 'application/json',
+                headers: {
+                    'Content-type': 'application/json'
+                },
                 url: url
+            });
+        }
+
+        function xhr(options) {
+            return new Promise(function (resolve, reject) {
+                var xhr = new XMLHttpRequest();
+                xhr.open(options.type, options.url);
+                xhr.onload = function () {
+                    if (this.status >= 200 && this.status < 300) {
+                        resolve(JSON.parse(xhr.response));
+                    } else {
+                        reject({
+                            status: this.status,
+                            statusText: xhr.statusText
+                        });
+                    }
+                };
+                xhr.onerror = function () {
+                    reject({
+                        status: this.status,
+                        statusText: xhr.statusText
+                    });
+                };
+                if (options.headers) {
+                    Object.keys(options.headers).forEach(function (key) {
+                        xhr.setRequestHeader(key, options.headers[key]);
+                    });
+                }
+                xhr.send(options.data);
             });
         }
 
         return {
             getTodos: function (tabId) {
-                return $.get(`/todos/${tabId}`);
+                return query('get', `/todos/${tabId}`);
             },
 
             createTodo(data){
@@ -22,10 +52,7 @@ define(['jquery'],
             },
 
             deleteTodo: function (id) {
-                $.ajax({
-                    type: 'DELETE',
-                    url: `/todo/${id}`
-                });
+                query('delete', `/todo/${id}`);
             },
 
             updateTodo: function (id, value) {
@@ -37,7 +64,7 @@ define(['jquery'],
             },
 
             getTabs: function () {
-                return $.get('/tabs');
+                return query('get', '/tabs');
             },
 
             createTab: function (data) {
@@ -45,10 +72,7 @@ define(['jquery'],
             },
 
             deleteTab: function (id) {
-                $.ajax({
-                    type: 'DELETE',
-                    url: `/tab/${id}`
-                });
+                query('delete', `/tab/${id}`);
             },
 
             updateTab: function (id, value) {

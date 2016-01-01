@@ -1,3 +1,5 @@
+'use strict';
+
 define(['queries', 'eventEmitter', 'Dispatcher', 'Constants'],
     function (queries, eventEmitter, Dispatcher, Constants) {
 

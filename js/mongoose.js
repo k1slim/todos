@@ -63,7 +63,7 @@
 
     function getTabs(req, res, next) {
         Tab.find().select('-_id -__v')
-            .then(data => res.json(data))
+            .then(data => res.send(data))
             .then(null, err => next(err));
     }
 

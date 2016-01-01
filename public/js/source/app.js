@@ -1,6 +1,5 @@
 require.config({
     paths: {
-        'jquery': '../../bower_components/jquery/dist/jquery',
         'react': '../../bower_components/react/react',
         'reactDOM': '../../bower_components/react/react-dom',
         'flux': '../../bower_components/flux/dist/Flux',
