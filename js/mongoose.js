@@ -24,18 +24,19 @@
         console.log("Connected to DB!");
     });
 
-    (function initializeTabs() {
-        Tab.find().select('-_id -__v')
+    function initializeTabs(user) {
+        Tab.find({user: user}).select('-_id -__v')
             .then(data => {
                 if (data.length === 0) {
                     new Tab({
                         id: `${Date.now()}${~~(Math.random() * 100)}`,
-                        value: 'Default'
+                        value: 'Default',
+                        user: user
                     }).save();
                 }
             })
             .then(null, err => next(err));
-    })();
+    }
 
     function getTodos(req, res, next) {
         Todo.find({tab: req.params.tab}).select('-_id -__v')
@@ -62,7 +63,7 @@
     }
 
     function getTabs(req, res, next) {
-        Tab.find().select('-_id -__v')
+        Tab.find({user: req.params.user}).select('-_id -__v')
             .then(data => res.send(data))
             .then(null, err => next(err));
     }
@@ -86,6 +87,7 @@
     }
 
     module.exports = {
+        initializeTabs: initializeTabs,
         getTodos: getTodos,
         createTodo: createTodo,
         deleteTodo: deleteTodo,

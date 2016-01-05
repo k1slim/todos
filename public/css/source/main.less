@@ -30,7 +30,7 @@ body {
     }
 
     .addTabField {
-      .inputText;
+      .inputText(@backCol, @textCol, @textCol, #C9C9C9);
     }
 
     h1 {
@@ -67,7 +67,7 @@ body {
       }
     }
 
-    .selectedMenuItem{
+    .selectedMenuItem {
       border-bottom: 2px solid yellow;
     }
   }
@@ -141,7 +141,96 @@ body {
     flex-grow: 1;
     margin: 0 10%;
 
-    .inputText;
+    .inputText(@backCol, @textCol, @textCol, #C9C9C9);
+  }
+}
+
+.loginForm {
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  width: 400px;
+  margin-left: -200px;
+  border-radius: @borderRad;
+  background: white;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.26);
+  z-index: 2;
+
+  .loginFormHeader {
+    background: @backCol;
+    padding: 16px;
+
+    h2 {
+      margin: 0;
+      color: @textCol;
+    }
+  }
+
+  .login, .password {
+    padding: 16px 16px 0 16px;
+
+    .inputText(@textCol, @backCol, black, #C9C9C9);
+
+    label {
+      display: none;
+      font-size: 12px;
+      color: red;
+    }
+
+    .showError {
+      display: block;
+    }
+  }
+
+  .loginFormFooter {
+    display: flex;
+    padding: 16px 16px 24px 16px;
+    text-align: right;
+    justify-content: space-between;
+
+    .staySigned {
+      input[type=checkbox] {
+        display: none;
+        visibility: hidden;
+      }
+
+      input[type="checkbox"] + label {
+        cursor: pointer;
+      }
+
+      input[type="checkbox"] + label:before {
+        display: inline-block;
+        content: "";
+        margin: 0 10px 3px 0;
+        width: 13px;
+        height: 13px;
+        background-color: #fff;
+        border: 2px solid #5a5a5a;
+        border-radius: 2px;
+        vertical-align: middle;
+      }
+
+      input[type=checkbox]:checked + label:before {
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjIwcHgiIGhlaWdodD0iMTVweCIgdmlld0JveD0iMCAwIDIwIDE1Ij4NCjxwb2x5Z29uIGZpbGw9IiNGRkZGRkYiIHBvaW50cz0iNy4xNDMsMTQuOTM4IDAsNy43OTYgMi4wMjEsNS43NzYgNy4xNDMsMTAuODk4IDE3Ljk3OSwwLjA2MiAyMCwyLjA4MiAiLz4NCjwvc3ZnPg0K');
+        background-color: rgb(3, 169, 245);
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        -webkit-background-size: 11px auto;
+        -moz-background-size: 11px auto;
+        -o-background-size: 11px auto;
+        background-size: 11px auto;
+        border-color: rgb(3, 169, 245);
+      }
+    }
+
+    .submitLoginButton {
+      font-weight: bold;
+      color: @backCol;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 }
 
@@ -181,13 +270,19 @@ body {
       margin: 0 5%;
     }
   }
+
+  .loginForm {
+    left: 5%;
+    width: 90%;
+    margin-left: 0;
+  }
 }
 
 .contentEditable {
   .contentEditableInput;
 }
 
-.contentEditableTab{
+.contentEditableTab {
   text-align: center;
   color: @textCol;
 }

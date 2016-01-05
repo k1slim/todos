@@ -8,7 +8,8 @@ define(['queries', 'eventEmitter', 'Dispatcher', 'Constants'],
 
         var todos = [],
             tabs = [],
-            selectedTab = -1,
+            selectedTab = '',
+            currentUser = '',
             Store;
 
         function createTodo(value) {
@@ -61,7 +62,8 @@ define(['queries', 'eventEmitter', 'Dispatcher', 'Constants'],
         function createTab(value) {
             var currentTab = {
                 id: `${Date.now()}${~~(Math.random() * 100)}`,
-                value: value
+                value: value,
+                user: currentUser
             };
             tabs.push(currentTab);
             queries.createTab(currentTab);
@@ -108,9 +110,10 @@ define(['queries', 'eventEmitter', 'Dispatcher', 'Constants'],
 
         Store = Object.assign({}, eventEmitter.prototype, {
 
-            initializeStore: function () {
-                queries.getTabs()
+            initializeStore: function (user) {
+                queries.getTabs(user)
                     .then(data => {
+                        currentUser = user;
                         tabs = data;
                         let currentSelectedTab = getSelectedFromLocalStorage();
                         if (currentSelectedTab && tabs.some(item => item.id === currentSelectedTab)) {
@@ -130,7 +133,7 @@ define(['queries', 'eventEmitter', 'Dispatcher', 'Constants'],
             },
 
             emitTodoChange: function () {
-                this.emit(CHANGE_TODO_EVENT)
+                this.emit(CHANGE_TODO_EVENT);
             },
 
             addTodoChangeListener: function (callback) {
@@ -146,7 +149,7 @@ define(['queries', 'eventEmitter', 'Dispatcher', 'Constants'],
             },
 
             emitTabChange: function () {
-                this.emit(CHANGE_TAB_EVENT)
+                this.emit(CHANGE_TAB_EVENT);
             },
 
             addTabChangeListener: function (callback) {
@@ -157,7 +160,7 @@ define(['queries', 'eventEmitter', 'Dispatcher', 'Constants'],
                 this.removeListener(CHANGE_TAB_EVENT, callback);
             },
 
-            getSelected(){
+            getSelected: function () {
                 return selectedTab;
             }
         });
