@@ -1,5 +1,5 @@
-define(['react', 'Nav', 'Actions'],
-    function (React, Nav, Actions) {
+define(['react', 'Nav', 'Actions', 'LoginStore'],
+    function (React, Nav, Actions, LoginStore) {
 
         return React.createClass({
             displayName: 'Header',
@@ -25,14 +25,26 @@ define(['react', 'Nav', 'Actions'],
                 }
             },
 
+            _onClick: function () {
+                LoginStore.logout();
+            },
+
             render: function () {
                 return (
                     <header className="header">
                         <div className="head">
-                            <div className="Title">
+                            <div className="title">
                                 <h1>
                                     ToDos
                                 </h1>
+                            </div>
+                            <div className="userField">
+                                <span className="usernamePlaceholder">
+                                    {LoginStore.getUserName()}
+                                </span>
+                                <span className="logoutButton" onClick={this._onClick}>
+                                    LOGOUT
+                                </span>
                             </div>
                             <div className="addTabField">
                                 <input type="text" placeholder="Tab name" value={this.state.value}

@@ -10,19 +10,15 @@
         function (username, password, done) {
             User.findOne({username: username})
                 .then(user => {
-                    console.log('q' + user);
                     if (!user) {
-                        console.log('!user');
                         return done(null, false, {status: 'Incorrect username'});
                     }
                     if (!user.comparePassword(password)) {
-                        console.log('!pass');
                         return done(null, false, {status: 'Incorrect password'});
                     }
                     return done(null, user);
                 })
                 .then(null, err => {
-                    console.error(err);
                     return done(err);
                 });
         }
@@ -41,7 +37,6 @@
     });
 
     function login(req, res, next) {
-        console.log('auth');
         var isSessionEnable = (req.query.session === 'true');
 
         passport.authenticate('local', function (err, user, info) {
@@ -57,12 +52,13 @@
                 if (err) {
                     return next(err);
                 }
-                return res.send({status: 'Login successful', user: user.id});
+                return res.send({status: 'Login successful', userId: user.id});
             });
         })(req, res, next);
     }
 
-    function logout(req, res) {
+    function logout(req) {
+        req.session.destroy();
         req.logout();
     }
 
@@ -81,7 +77,7 @@
 
     function getSession(req, res) {
         var user = req.user;
-        res.send(user ? user.id : 'false');
+        res.send(user ? {userId: user.id, username: user.username} : 'false');
     }
 
     module.exports = {

@@ -6,6 +6,7 @@ define(['queries', 'eventEmitter', 'Store'],
         const CHANGE_LOGIN_STATUS_EVENT = 'changeLoginStatus';
 
         var loginStatus = '',
+            user = '',
             LoginStore;
 
         LoginStore = Object.assign({}, eventEmitter.prototype, {
@@ -15,8 +16,9 @@ define(['queries', 'eventEmitter', 'Store'],
                     .then(data => {
                         if (data !== false) {
                             loginStatus = 'Login successful';
+                            user = data.username;
                             this.emitLoginChange();
-                            Store.initializeStore(data);
+                            Store.initializeStore(data.userId);
                         }
                     });
             },
@@ -25,10 +27,11 @@ define(['queries', 'eventEmitter', 'Store'],
                 queries.login(username, password, session)
                     .then(data => {
                         loginStatus = data.status;
+                        user = username;
                         this.emitLoginChange();
 
                         if (loginStatus === 'Login successful') {
-                            Store.initializeStore(data.user);
+                            Store.initializeStore(data.userId);
                         }
                     });
             },
@@ -41,6 +44,10 @@ define(['queries', 'eventEmitter', 'Store'],
 
             getLoginStatus: function () {
                 return loginStatus;
+            },
+
+            getUserName: function () {
+                return user;
             },
 
             emitLoginChange: function () {

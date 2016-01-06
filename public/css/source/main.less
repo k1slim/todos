@@ -19,23 +19,44 @@ body {
 
   .head {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     width: 80%;
     margin: auto;
     padding: 10px;
 
     .title {
-      text-align: center;
+      flex-grow: 1;
+
+      h1 {
+        margin: 0;
+        color: @textCol;
+      }
+    }
+
+    .userField {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 20px;
+      color: @textCol;
+
+      .usernamePlaceholder {
+        padding-bottom: 5px;
+      }
+
+      .logoutButton {
+        font-weight: bold;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
 
     .addTabField {
       .inputText(@backCol, @textCol, @textCol, #C9C9C9);
-    }
-
-    h1 {
-      margin: 0;
-      color: @textCol;
     }
   }
 
@@ -135,11 +156,10 @@ body {
   bottom: 0;
   width: 100%;
   background: @backCol;
-  padding: 10px 0;
+  padding: 10px 10%;
 
   .textField {
     flex-grow: 1;
-    margin: 0 10%;
 
     .inputText(@backCol, @textCol, @textCol, #C9C9C9);
   }
@@ -266,9 +286,7 @@ body {
   }
 
   .footer {
-    .textField {
-      margin: 0 5%;
-    }
+    padding: 10px 10%;
   }
 
   .loginForm {

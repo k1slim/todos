@@ -22,7 +22,9 @@ define(['react'],
             },
 
             _onChange: function (event) {
-                this.setState({value: event.target.value});
+                if (this.state.value !== '') {
+                    this.setState({value: event.target.value});
+                }
             },
 
             _onKeyPress: function (event) {
@@ -30,6 +32,12 @@ define(['react'],
                     this._toggle();
                 }
             },
+
+            _parseValue: function () {
+                var pattern = /\[(.*)\]\((.*)\)/g;
+                return this.state.value.replace(pattern, (match, p1, p2) => `<a href='${p2}' target='_blank'>${p1}</a>`);
+            },
+
 
             render: function () {
                 return this.state.editable ? (
@@ -42,7 +50,8 @@ define(['react'],
                            onBlur={this._toggle}
 
                     />) : (
-                    <span className={this.props.className} onDoubleClick={this._toggle}> {this.state.value} </span>);
+                    <span className={this.props.className} onDoubleClick={this._toggle}
+                          dangerouslySetInnerHTML={{__html: this._parseValue()}}/>);
             }
         });
 

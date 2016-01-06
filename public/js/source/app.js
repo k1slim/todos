@@ -9,9 +9,6 @@ require.config({
         //TODO Make a test user and write about it in the readme
         //TODO Transpile ES6 to ES5
 
-        //TODO Logout and show username in footer
-        //TODO Only links in items text fields
-
         'App': 'components/appComponent',
         'Header': 'components/header',
         'Nav': 'components/nav',
