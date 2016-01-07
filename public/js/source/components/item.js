@@ -4,10 +4,6 @@ define(['react', 'ContentEditable', 'Actions'],
         return React.createClass({
             displayName: 'Item',
 
-            _updateValue: function (value) {
-                Actions.updateTodo(this.props.id, value);
-            },
-
             _doneHandler: function () {
                 Actions.toggleTodo(this.props.id);
             },
@@ -18,6 +14,10 @@ define(['react', 'ContentEditable', 'Actions'],
 
             _setItemClass: function () {
                 return this.props.done ? 'item completed' : 'item';
+            },
+
+            _updateValue: function (value) {
+                Actions.updateTodo(this.props.id, value);
             },
 
             render: function () {

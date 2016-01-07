@@ -1,6 +1,8 @@
 define(['react', 'LoginStore'],
     function (React, LoginStore) {
 
+        const ENTER_KEY_CODE = 13;
+
         return React.createClass({
             displayName: 'LoginForm',
 
@@ -16,44 +18,22 @@ define(['react', 'LoginStore'],
 
             componentDidMount: function () {
                 LoginStore.addLoginListener(this._login);
-
             },
 
             componentWillUnmount: function () {
                 LoginStore.removeLoginListener(this._login);
             },
 
-            _login: function () {
-                var msg = LoginStore.getLoginStatus();
-                switch (msg) {
-                    case 'Incorrect username':
-                        this.setState({loginError: true});
-                        break;
+            _onPasswordChange: function (event) {
+                this.setState({password: event.target.value});
+            },
 
-                    case 'Incorrect password':
-                        this.setState({passwordError: true});
-                        break;
-
-                    default:
-                }
+            _onUsernameChange: function (event) {
+                this.setState({username: event.target.value});
             },
 
             _onCheckChange: function () {
                 this.setState({checked: !this.state.checked});
-            },
-
-            _onChange: function (event) {
-                switch (event.target.type) {
-                    case 'text':
-                        this.setState({username: event.target.value});
-                        break;
-
-                    case 'password':
-                        this.setState({password: event.target.value});
-                        break;
-
-                    default:
-                }
             },
 
             _onClick: function () {
@@ -75,8 +55,23 @@ define(['react', 'LoginStore'],
             },
 
             _onKeyPress: function (event) {
-                if (event.which === 13) {
+                if (event.which === ENTER_KEY_CODE) {
                     this._onClick();
+                }
+            },
+
+            _login: function () {
+                var status = LoginStore.getLoginStatus();
+                switch (status) {
+                    case 'Incorrect username':
+                        this.setState({loginError: true});
+                        break;
+
+                    case 'Incorrect password':
+                        this.setState({passwordError: true});
+                        break;
+
+                    default:
                 }
             },
 
@@ -99,21 +94,21 @@ define(['react', 'LoginStore'],
                         </header>
                         <div className="login">
                             <input className="inputText" id="login" type="text" placeholder="Login"
-                                   value={this.state.username} onChange={this._onChange}/>
+                                   value={this.state.username} onChange={this._onUsernameChange}/>
                             <label htmlFor="login" className={this._setLoginErrorClass()}>
                                 Incorrect login
                             </label>
                         </div>
                         <div className="password">
                             <input className="inputText" id="password" type="password" placeholder="Password"
-                                   value={this.state.password} onChange={this._onChange}/>
+                                   value={this.state.password} onChange={this._onPasswordChange}/>
                             <label htmlFor="password" className={this._setPasswordErrorClass()}>
                                 Incorrect password
                             </label>
                         </div>
                         <footer className="loginFormFooter">
                             <span className="staySigned">
-                                <input type="checkbox" id="staySigned" checked={this.state.checked}
+                                <input id="staySigned" type="checkbox" checked={this.state.checked}
                                        onChange={this._onCheckChange}/>
                                 <label htmlFor="staySigned">Stay signed in</label>
                             </span>

@@ -1,50 +1,43 @@
 define(['react', 'Header', 'Content', 'Footer', 'LoginForm', 'LoginStore'],
     function (React, Header, Content, Footer, LoginForm, LoginStore) {
 
-        const APP_STATUS = {
-            SIGNED: 'SIGNED',
-            UNSIGNED: 'UNSIGNED'
-        };
-
         return React.createClass({
             displayName: 'App',
 
             getInitialState: function () {
                 return {
-                    page: APP_STATUS.UNSIGNED
+                    isLogged: false
                 };
             },
 
             componentDidMount: function () {
-                LoginStore.addLoginListener(this._showPage);
+                LoginStore.addLoginListener(this._toggleState);
             },
 
             componentWillUnmount: function () {
-                LoginStore.removeLoginListener(this._showPage);
+                LoginStore.removeLoginListener(this._toggleState);
             },
 
-            _showPage: function () {
+            _toggleState: function () {
                 if (LoginStore.getLoginStatus() === 'Login successful') {
-                    this.setState({page: APP_STATUS.SIGNED});
+                    this.setState({isLogged: true});
                 }
                 else {
-                    this.setState({page: APP_STATUS.UNSIGNED});
+                    this.setState({isLogged: false});
                 }
             },
 
             render: function () {
-                var page = this.state.page === APP_STATUS.UNSIGNED ?
-                    <section className="page">
-                        <LoginForm/>
-                    </section>
-                    :
+                return this.state.isLogged ? (
                     <section className="page">
                         <Header/>
                         <Content/>
                         <Footer/>
-                    </section>;
-                return (
-                    page
+                    </section>
+                ) : (
+                    <section className="page">
+                        <LoginForm/>
+                    </section>
                 );
             }
         });

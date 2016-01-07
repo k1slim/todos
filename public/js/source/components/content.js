@@ -12,7 +12,6 @@ define(['react', 'Item', 'Store'],
 
             componentDidMount: function () {
                 Store.addTodoChangeListener(this._updateList);
-
             },
 
             componentWillUnmount: function () {

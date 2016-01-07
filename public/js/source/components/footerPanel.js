@@ -1,6 +1,8 @@
 define(['react', 'Actions'],
     function (React, Actions) {
 
+        const ENTER_KEY_CODE = 13;
+
         return React.createClass({
             displayName: 'Footer',
 
@@ -10,19 +12,19 @@ define(['react', 'Actions'],
                 };
             },
 
-            _addItem: function () {
-                Actions.createTodo(this.state.value);
-                this.setState({value: ''});
-            },
-
             _onChange: function (event) {
                 this.setState({value: event.target.value});
             },
 
             _onKeyPress: function (event) {
-                if (event.which === 13) {
+                if (event.which === ENTER_KEY_CODE) {
                     this._addItem();
                 }
+            },
+
+            _addItem: function () {
+                Actions.createTodo(this.state.value);
+                this.setState({value: ''});
             },
 
             render: function () {

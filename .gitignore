@@ -1,5 +1,4 @@
 .idea
-*.iml
 .babelrc
 public/css/compiled
 public/js/compiled

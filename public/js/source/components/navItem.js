@@ -8,12 +8,12 @@ define(['react', 'ContentEditable', 'Actions', 'Store'],
                 Actions.selectTab(this.props.id);
             },
 
-            _updateValue: function (value) {
-                Actions.updateTab(this.props.id, value);
-            },
-
             _setItemClass: function () {
                 return (this.props.id === Store.getSelected()) ? 'menuItem selectedMenuItem' : 'menuItem';
+            },
+
+            _updateValue: function (value) {
+                Actions.updateTab(this.props.id, value);
             },
 
             render: function () {

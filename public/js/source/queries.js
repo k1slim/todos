@@ -1,10 +1,8 @@
 define(function () {
 
     function query(type, url, data) {
-        type = type.toUpperCase();
-
         return xhr({
-            type: type,
+            type: type.toUpperCase(),
             data: JSON.stringify(data),
             headers: {
                 'Content-type': 'application/json'

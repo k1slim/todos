@@ -1,6 +1,8 @@
 define(['react', 'Nav', 'Actions', 'LoginStore'],
     function (React, Nav, Actions, LoginStore) {
 
+        const ENTER_KEY_CODE = 13;
+
         return React.createClass({
             displayName: 'Header',
 
@@ -10,23 +12,23 @@ define(['react', 'Nav', 'Actions', 'LoginStore'],
                 };
             },
 
-            _addItem: function () {
-                Actions.createTab(this.state.value.trim());
-                this.setState({value: ''});
-            },
-
             _onChange: function (event) {
                 this.setState({value: event.target.value});
             },
 
+            _onClick: function () {
+                LoginStore.logout();
+            },
+
             _onKeyPress: function (event) {
-                if (event.which === 13) {
+                if (event.which === ENTER_KEY_CODE) {
                     this._addItem();
                 }
             },
 
-            _onClick: function () {
-                LoginStore.logout();
+            _addItem: function () {
+                Actions.createTab(this.state.value);
+                this.setState({value: ''});
             },
 
             render: function () {

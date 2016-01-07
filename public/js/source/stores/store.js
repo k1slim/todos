@@ -1,15 +1,15 @@
 'use strict';
 
-define(['queries', 'eventEmitter', 'Dispatcher', 'Constants'],
-    function (queries, eventEmitter, Dispatcher, Constants) {
+define(['eventEmitter', 'queries', 'Dispatcher', 'Constants'],
+    function (eventEmitter, queries, Dispatcher, Constants) {
 
-        const CHANGE_TODO_EVENT = 'changeTodo',
-            CHANGE_TAB_EVENT = 'changeTab';
+        const CHANGE_TODO_EVENT = 'CHANGE_TODO_EVENT',
+            CHANGE_TAB_EVENT = 'CHANGE_TAB_EVENT';
 
         var todos = [],
             tabs = [],
             selectedTab = '',
-            currentUser = '',
+            currentUserId = '',
             Store;
 
         function createTodo(value) {
@@ -63,7 +63,7 @@ define(['queries', 'eventEmitter', 'Dispatcher', 'Constants'],
             var currentTab = {
                 id: `${Date.now()}${~~(Math.random() * 100)}`,
                 value: value,
-                user: currentUser
+                user: currentUserId
             };
             tabs.push(currentTab);
             queries.createTab(currentTab);
@@ -110,10 +110,10 @@ define(['queries', 'eventEmitter', 'Dispatcher', 'Constants'],
 
         Store = Object.assign({}, eventEmitter.prototype, {
 
-            initializeStore: function (user) {
-                queries.getTabs(user)
+            initializeStore: function (userId) {
+                queries.getTabs(userId)
                     .then(data => {
-                        currentUser = user;
+                        currentUserId = userId;
                         tabs = data;
                         let currentSelectedTab = getSelectedFromLocalStorage();
                         if (currentSelectedTab && tabs.some(item => item.id === currentSelectedTab)) {

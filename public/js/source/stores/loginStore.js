@@ -3,7 +3,7 @@
 define(['queries', 'eventEmitter', 'Store'],
     function (queries, eventEmitter, Store) {
 
-        const CHANGE_LOGIN_STATUS_EVENT = 'changeLoginStatus';
+        const CHANGE_LOGIN_STATUS_EVENT = 'CHANGE_LOGIN_STATUS_EVENT';
 
         var loginStatus = '',
             user = '',
