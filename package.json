@@ -25,6 +25,12 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-contrib-copy": "latest",
+    "grunt-contrib-requirejs": "latest",
+    "grunt-csso": "latest",
+    "grunt-text-replace": "latest"
+  },
   "description": "ToDos by k1slim"
 }

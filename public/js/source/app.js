@@ -5,10 +5,6 @@ require.config({
         'flux': '../../bower_components/flux/dist/Flux',
         'eventEmitter': '../../bower_components/eventEmitter/EventEmitter',
 
-        //Todo Local libraries must replaced to CDN on production. In index.html too
-        //TODO Make a test user and write about it in the readme
-        //TODO Transpile ES6 to ES5
-
         'App': 'components/appComponent',
         'Header': 'components/header',
         'Nav': 'components/nav',
