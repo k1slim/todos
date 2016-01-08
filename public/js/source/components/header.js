@@ -49,7 +49,7 @@ define(['react', 'Nav', 'Actions', 'LoginStore'],
                                 </span>
                             </div>
                             <div className="addTabField">
-                                <input type="text" placeholder="Tab name" value={this.state.value}
+                                <input type="text" placeholder="Add new tab" value={this.state.value}
                                        onChange={this._onChange} onKeyPress={this._onKeyPress}/>
                             </div>
                         </div>

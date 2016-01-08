@@ -31,7 +31,7 @@ define(['react', 'Actions'],
                 return (
                     <footer className="footer">
                         <div className="textField">
-                            <input type="text" placeholder="Text here" value={this.state.value}
+                            <input type="text" placeholder="Add new todo" value={this.state.value}
                                    onChange={this._onChange} onKeyPress={this._onKeyPress}/>
                         </div>
                     </footer>

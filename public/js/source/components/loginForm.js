@@ -94,14 +94,14 @@ define(['react', 'LoginStore'],
                         </header>
                         <div className="login">
                             <input className="inputText" id="login" type="text" placeholder="Login"
-                                   value={this.state.username} onChange={this._onUsernameChange}/>
+                                   value={this.state.username} onChange={this._onUsernameChange} onKeyPress={this._onKeyPress}/>
                             <label htmlFor="login" className={this._setLoginErrorClass()}>
                                 Incorrect login
                             </label>
                         </div>
                         <div className="password">
                             <input className="inputText" id="password" type="password" placeholder="Password"
-                                   value={this.state.password} onChange={this._onPasswordChange}/>
+                                   value={this.state.password} onChange={this._onPasswordChange} onKeyPress={this._onKeyPress}/>
                             <label htmlFor="password" className={this._setPasswordErrorClass()}>
                                 Incorrect password
                             </label>

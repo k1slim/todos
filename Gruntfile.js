@@ -8,35 +8,35 @@ module.exports = function (grunt) {
                 files: [
                     {
                         src: 'public/index.html',
-                        dest: '../todosBuild/'
+                        dest: '../todosProduction/'
                     },
                     {
                         src: 'public/image/**',
-                        dest: '../todosBuild/'
+                        dest: '../todosProduction/'
                     },
                     {
                         src: 'server.js',
-                        dest: '../todosBuild/'
+                        dest: '../todosProduction/'
                     },
                     {
                         src: 'js/**',
-                        dest: '../todosBuild/'
+                        dest: '../todosProduction/'
                     },
                     {
                         src: 'public/bower_components/flux/dist/Flux.min.js',
-                        dest: '../todosBuild/public/js/Flux.min.js'
+                        dest: '../todosProduction/public/js/Flux.min.js'
                     },
                     {
                         src: 'public/bower_components/react/react.min.js',
-                        dest: '../todosBuild/public/js/react.min.js'
+                        dest: '../todosProduction/public/js/react.min.js'
                     },
                     {
                         src: 'public/bower_components/react/react-dom.min.js',
-                        dest: '../todosBuild/public/js/react-dom.min.js'
+                        dest: '../todosProduction/public/js/react-dom.min.js'
                     },
                     {
                         src: 'public/bower_components/eventEmitter/EventEmitter.min.js',
-                        dest: '../todosBuild/public/js/EventEmitter.min.js'
+                        dest: '../todosProduction/public/js/EventEmitter.min.js'
                     }
                 ]
             }
@@ -45,14 +45,14 @@ module.exports = function (grunt) {
         csso: {
             main: {
                 files: {
-                    '../todosBuild/public/css/main.min.css': 'public/css/compiled/main.css'
+                    '../todosProduction/public/css/main.min.css': 'public/css/compiled/main.css'
                 }
             }
         },
 
         replace: {
             index: {
-                src: ['../todosBuild/public/index.html'],
+                src: ['../todosProduction/public/index.html'],
                 overwrite: true,
                 replacements: [
                     {
@@ -71,7 +71,7 @@ module.exports = function (grunt) {
                 ]
             },
             code: {
-                src: ['../todosBuild/public/js/production.js'],
+                src: ['../todosProduction/public/js/production.js'],
                 overwrite: true,
                 replacements: [
                     {
@@ -101,7 +101,7 @@ module.exports = function (grunt) {
                     name: "app",
                     include: ['app'],
                     exclude: ['react', 'reactDOM', 'flux', 'eventEmitter'],
-                    out: "../todosBuild/public/js/production.js"
+                    out: "../todosProduction/public/js/production.js"
                 }
             }
         }
