@@ -396,6 +396,7 @@ body {
 }
 .contentEditableWrapper img {
   height: 24px;
+  width: 24px;
   margin: -3px;
 }
 .contentEditableWrapper img:hover {

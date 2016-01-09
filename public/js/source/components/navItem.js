@@ -12,6 +12,10 @@ define(['react', 'ContentEditable', 'Actions', 'Store'],
                 return (this.props.id === Store.getSelected()) ? 'menuItem selectedMenuItem' : 'menuItem';
             },
 
+            _setSelectedTabProps: function () {
+                return this.props.id === Store.getSelected();
+            },
+
             _updateValue: function (value) {
                 Actions.updateTab(this.props.id, value);
             },
@@ -20,7 +24,7 @@ define(['react', 'ContentEditable', 'Actions', 'Store'],
                 return (
                     <div className={this._setItemClass()} onClick={this._onClick}>
                         <ContentEditable className="menuItemText" inputClassName="contentEditable contentEditableTab"
-                                         value={this.props.value} updateValue={this._updateValue}/>
+                                         value={this.props.value} updateValue={this._updateValue} selectedTab={this._setSelectedTabProps()}/>
                     </div>
                 );
             }

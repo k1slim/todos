@@ -19,7 +19,7 @@ define(['react'],
 
             _onKeyPress: function (event) {
                 if (event.which === ENTER_KEY_CODE) {
-                    this._toggle();
+                    this._toggle(event);
                 }
             },
 
@@ -29,7 +29,7 @@ define(['react'],
             },
 
             _toggle: function (event) {
-                event.stopPropagation();
+                    event.stopPropagation();
                 var isEditing = this.state.isEditing;
                 this.setState({isEditing: !isEditing});
                 if (isEditing) {
@@ -39,6 +39,13 @@ define(['react'],
 
             _chooseImageVersion: function () {
                 return this.props.className === 'itemText' ? 'image/icons/pencil_gray.png' : 'image/icons/pencil_white.png';
+            },
+
+            _setEditablePensil:function(){
+                if(this.props.className === 'menuItemText' && this.props.selectedTab) {
+                    return
+                }
+                return <img src={this._chooseImageVersion()} alt="edit" onClick={this._toggle}/>
             },
 
             render: function () {
@@ -54,7 +61,7 @@ define(['react'],
                     <div className="contentEditableWrapper">
                         <span className={this.props.className} onDoubleClick={this._toggle}
                               dangerouslySetInnerHTML={{__html: this._parseValue()}}/>
-                        <img src={this._chooseImageVersion()} alt="left" onClick={this._toggle}/>
+                        {this._setEditablePensil()}
                     </div>
                 );
             }
