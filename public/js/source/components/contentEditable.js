@@ -28,12 +28,17 @@ define(['react'],
                 return this.state.value.replace(pattern, (match, p1, p2) => `<a href='${p2}' target='_blank'>${p1}</a>`);
             },
 
-            _toggle: function () {
+            _toggle: function (event) {
+                event.stopPropagation();
                 var isEditing = this.state.isEditing;
                 this.setState({isEditing: !isEditing});
                 if (isEditing) {
                     this.props.updateValue(this.state.value);
                 }
+            },
+
+            _chooseImageVersion: function () {
+                return this.props.className === 'itemText' ? 'image/icons/pencil_gray.png' : 'image/icons/pencil_white.png';
             },
 
             render: function () {
@@ -46,8 +51,11 @@ define(['react'],
                            onKeyPress={this._onKeyPress}
                            onBlur={this._toggle}
                     />) : (
-                    <span className={this.props.className} onDoubleClick={this._toggle}
-                          dangerouslySetInnerHTML={{__html: this._parseValue()}}/>
+                    <div className="contentEditableWrapper">
+                        <span className={this.props.className} onDoubleClick={this._toggle}
+                              dangerouslySetInnerHTML={{__html: this._parseValue()}}/>
+                        <img src={this._chooseImageVersion()} alt="left" onClick={this._toggle}/>
+                    </div>
                 );
             }
         });

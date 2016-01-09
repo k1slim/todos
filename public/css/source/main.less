@@ -66,30 +66,50 @@ body {
     margin: auto;
     padding: 0 12px;
 
-    .menuItem {
-      flex-grow: 1;
-      flex-basis: 0;
-      border-bottom: 2px solid @backCol;
-      padding: 10px;
-      text-align: center;
-      overflow: hidden;
-      white-space: nowrap;
+    .arrows {
+      display: none;
+      align-items: center;
 
       &:hover {
-        .hover;
-      }
-
-      .menuItemText {
-        display: block;
-        text-decoration: none;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        color: @textCol;
+        cursor: pointer;
       }
     }
 
-    .selectedMenuItem {
-      border-bottom: 2px solid yellow;
+    .showArrows {
+      display: flex;
+    }
+
+    .menu {
+      display: flex;
+      flex-grow: 1;
+
+      .menuItem {
+        flex-grow: 1;
+        flex-basis: 0;
+        border-bottom: 2px solid @backCol;
+        padding: 10px;
+        text-align: center;
+        overflow: hidden;
+        white-space: nowrap;
+
+        &:hover {
+          .hover;
+        }
+
+        .menuItemText {
+          flex-grow: 1;
+          display: block;
+          padding: 1px 0;
+          text-decoration: none;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          color: @textCol;
+        }
+      }
+
+      .selectedMenuItem {
+        border-bottom: 2px solid yellow;
+      }
     }
   }
 }
@@ -133,18 +153,19 @@ body {
       overflow: hidden;
     }
 
-    .itemDelete {
-      height: 24px;
-      margin-left: 20px;
+  }
 
-      &:hover {
-        .hover;
-        border-radius: @borderRad;
-      }
+  .itemDelete {
+    height: 24px;
+    margin-left: 20px;
 
-      img {
-        width: 24px;
-      }
+    &:hover {
+      .hover;
+      border-radius: @borderRad;
+    }
+
+    img {
+      width: 24px;
     }
   }
 }
@@ -272,10 +293,22 @@ body {
     .nav {
       width: 90%;
       flex-direction: column;
-      padding: 0;
 
-      .menuItem {
-        flex-basis: auto;
+      .arrows {
+        justify-content: center;
+
+        img {
+          transform: rotate(90deg);
+        }
+      }
+
+      .menu {
+        flex-direction: column;
+        padding: 0;
+
+        .menuItem {
+          flex-basis: auto;
+        }
       }
     }
   }
@@ -303,4 +336,18 @@ body {
 .contentEditableTab {
   text-align: center;
   color: @textCol;
+}
+
+.contentEditableWrapper {
+  display: flex;
+  flex-grow: 1;
+
+  img {
+    height: 24px;
+    margin: -3px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }

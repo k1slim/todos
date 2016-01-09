@@ -94,7 +94,21 @@ body {
   margin: auto;
   padding: 0 12px;
 }
-.header .nav .menuItem {
+.header .nav .arrows {
+  display: none;
+  align-items: center;
+}
+.header .nav .arrows:hover {
+  cursor: pointer;
+}
+.header .nav .showArrows {
+  display: flex;
+}
+.header .nav .menu {
+  display: flex;
+  flex-grow: 1;
+}
+.header .nav .menu .menuItem {
   flex-grow: 1;
   flex-basis: 0;
   border-bottom: 2px solid #2196f3;
@@ -103,18 +117,20 @@ body {
   overflow: hidden;
   white-space: nowrap;
 }
-.header .nav .menuItem:hover {
+.header .nav .menu .menuItem:hover {
   border-bottom: 2px solid #ffffff;
   cursor: pointer;
 }
-.header .nav .menuItem .menuItemText {
+.header .nav .menu .menuItem .menuItemText {
+  flex-grow: 1;
   display: block;
+  padding: 1px 0;
   text-decoration: none;
   overflow: hidden;
   text-overflow: ellipsis;
   color: #ffffff;
 }
-.header .nav .selectedMenuItem {
+.header .nav .menu .selectedMenuItem {
   border-bottom: 2px solid yellow;
 }
 .content {
@@ -152,16 +168,16 @@ body {
   flex-grow: 1;
   overflow: hidden;
 }
-.content .item .itemDelete {
+.content .itemDelete {
   height: 24px;
   margin-left: 20px;
 }
-.content .item .itemDelete:hover {
+.content .itemDelete:hover {
   border-bottom: 2px solid #ffffff;
   cursor: pointer;
   border-radius: 2px;
 }
-.content .item .itemDelete img {
+.content .itemDelete img {
   width: 24px;
 }
 .footer {
@@ -333,9 +349,18 @@ body {
   .header .nav {
     width: 90%;
     flex-direction: column;
+  }
+  .header .nav .arrows {
+    justify-content: center;
+  }
+  .header .nav .arrows img {
+    transform: rotate(90deg);
+  }
+  .header .nav .menu {
+    flex-direction: column;
     padding: 0;
   }
-  .header .nav .menuItem {
+  .header .nav .menu .menuItem {
     flex-basis: auto;
   }
   .content {
@@ -364,4 +389,15 @@ body {
 .contentEditableTab {
   text-align: center;
   color: #ffffff;
+}
+.contentEditableWrapper {
+  display: flex;
+  flex-grow: 1;
+}
+.contentEditableWrapper img {
+  height: 24px;
+  margin: -3px;
+}
+.contentEditableWrapper img:hover {
+  cursor: pointer;
 }
