@@ -42,7 +42,7 @@ define(['react'],
             },
 
             _setEditablePensil:function(){
-                if(this.props.className === 'menuItemText' && this.props.selectedTab) {
+                if(this.props.className === 'menuItemText' && !this.props.selectedTab) {
                     return
                 }
                 return <img src={this._chooseImageVersion()} alt="edit" onClick={this._toggle}/>
