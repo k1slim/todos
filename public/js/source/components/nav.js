@@ -5,6 +5,8 @@ define(['react', 'NavItem', 'Store'],
 
         const COUNT_DISPLAYED_TABS = 6;
 
+        var startX = 0;
+
         function findSelectedTabIndex(items, selectedTab) {
             for (let i = 0, n = items.length; i <= n; i++) {
                 if (items[i].id === selectedTab) {
@@ -93,6 +95,31 @@ define(['react', 'NavItem', 'Store'],
                 });
             },
 
+            _onTouchStart: function (event) {
+                startX = event.touches[0].clientX;
+            },
+
+            _onTouchMove: function (event) {
+                const TOUCH_SENSITIVE = 50;
+                var currentX = event.touches[0].clientX;
+                if (currentX > startX + TOUCH_SENSITIVE) {
+                    startX += TOUCH_SENSITIVE;
+                    let interval = calcIntervalBoundaries(this.state.items.length, this.state.startIndex, -1);
+                    this.setState({
+                        startIndex: interval.startIndex,
+                        endIndex: interval.endIndex
+                    });
+                }
+                if (currentX < startX - TOUCH_SENSITIVE) {
+                    startX -= TOUCH_SENSITIVE;
+                    let interval = calcIntervalBoundaries(this.state.items.length, this.state.startIndex, +1);
+                    this.setState({
+                        startIndex: interval.startIndex,
+                        endIndex: interval.endIndex
+                    });
+                }
+            },
+
             _updateList: function () {
                 var items = Store.getTabs(),
                     selectedTab = Store.getSelected(),
@@ -117,7 +144,7 @@ define(['react', 'NavItem', 'Store'],
 
             render: function () {
                 return (
-                    <nav className="nav">
+                    <nav className="nav" onTouchMove={this._onTouchMove} onTouchStart={this._onTouchStart}>
                         <div className={this._setArrowsClass()} onClick={this._onLeftArrowClick}>
                             <img src="image/icons/left.png" alt="left"/>
                         </div>

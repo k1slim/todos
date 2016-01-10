@@ -393,6 +393,7 @@ body {
 .contentEditableWrapper {
   display: flex;
   flex-grow: 1;
+  align-items: center;
 }
 .contentEditableWrapper img {
   height: 24px;
