@@ -10,6 +10,8 @@ const config = require('.././js/config.js'),
 
 var db;
 
+mongoose.Promise = global.Promise;
+
 mongoose.connect(dbUrl);
 db = mongoose.connection;
 

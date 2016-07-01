@@ -1,7 +1,4 @@
 .idea
-.babelrc
-public/css/compiled
-public/js/compiled
-public/bower_components/
+build
 node_modules
 TODO

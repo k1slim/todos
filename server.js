@@ -9,7 +9,7 @@ const express = require('express'),
 
 app.listen(config.express.port);
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/build'));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(session({
