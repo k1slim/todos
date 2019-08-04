@@ -1,4 +1,5 @@
 import React from 'react';
+import queries from './../queries';
 
 const ENTER_KEY_CODE = 13;
 
@@ -29,7 +30,7 @@ export default React.createClass({
     },
 
     _parseValue: function () {
-        var pattern = /\[(.*)\]\((.*)\)/g;
+        var pattern = /\[(.*)]\((.*)\)/g;
         return this.state.value.replace(pattern, (match, p1, p2) => `<a href='${p2}' target='_blank'>${p1}</a>`);
     },
 
@@ -51,7 +52,7 @@ export default React.createClass({
 
     render: function () {
         return this.state.isEditing ? (
-            <input className={this.props.inputClassName}
+            <input className={this.props['inputClassName']}
                    autoFocus={true}
                    type="text"
                    value={this.state.value}

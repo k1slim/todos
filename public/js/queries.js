@@ -11,7 +11,7 @@ function query(type, url, data) {
 
 function xhr(options) {
     return new Promise(function (resolve, reject) {
-        var xhr = new XMLHttpRequest();
+        let xhr = new XMLHttpRequest();
         xhr.open(options.type, options.url);
         xhr.onload = function () {
             if (this.status >= 200 && this.status < 300) {
@@ -30,9 +30,7 @@ function xhr(options) {
             });
         };
         if (options.headers) {
-            Object.keys(options.headers).forEach(function (key) {
-                xhr.setRequestHeader(key, options.headers[key]);
-            });
+            Object.keys(options.headers).forEach(key => xhr.setRequestHeader(key, options.headers[key]));
         }
         xhr.send(options.data);
     });

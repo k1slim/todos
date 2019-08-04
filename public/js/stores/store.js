@@ -8,14 +8,14 @@ import Dispatcher from '../dispatcher/dispatcher'
 const CHANGE_TODO_EVENT = 'CHANGE_TODO_EVENT',
     CHANGE_TAB_EVENT = 'CHANGE_TAB_EVENT';
 
-var todos = [],
+let todos = [],
     tabs = [],
     selectedTab = '',
     currentUserId = '',
     Store;
 
 function createTodo(value) {
-    var currentTodo = {
+    let currentTodo = {
         id: `${Date.now()}${~~(Math.random() * 100)}`,
         value: value,
         tab: selectedTab
@@ -47,7 +47,7 @@ function updateTodo(id, value) {
 }
 
 function toggleTodo(id) {
-    var currentDone = true;
+    let currentDone = true;
     todos.forEach(item => {
         if (item.id === id) {
             currentDone = !item.done;
@@ -62,7 +62,7 @@ function isAllTodosDeleted() {
 }
 
 function createTab(value) {
-    var currentTab = {
+    let currentTab = {
         id: `${Date.now()}${~~(Math.random() * 100)}`,
         value: value,
         user: currentUserId
@@ -111,7 +111,6 @@ function getSelectedFromLocalStorage() {
 }
 
 Store = Object.assign({}, EventEmitter.prototype, {
-
     initializeStore: function (userId) {
         queries.getTabs(userId)
             .then(data => {
@@ -170,7 +169,7 @@ Store = Object.assign({}, EventEmitter.prototype, {
 Dispatcher.register(function (action) {
     const minLength = 0,
         maxLength = 250;
-    var value;
+    let value;
 
     switch (action.actionType) {
         case Constants.TODO_CREATE:

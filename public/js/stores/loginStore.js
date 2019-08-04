@@ -11,7 +11,6 @@ let loginStatus = '',
     LoginStore;
 
 LoginStore = Object.assign({}, EventEmitter.prototype, {
-
     initializeFromSession: function () {
         queries.getSession()
             .then(data => {

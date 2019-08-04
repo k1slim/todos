@@ -6,10 +6,9 @@ import Store from '../stores/store';
 
 const COUNT_DISPLAYED_TABS = 6;
 
-var startX = 0;
+let startX = 0;
 
-function findSelectedTabIndex(items, selectedTab)
-{
+function findSelectedTabIndex(items, selectedTab) {
     for (let i = 0, n = items.length; i <= n; i++) {
         if (items[i].id === selectedTab) {
             return i;
@@ -18,7 +17,7 @@ function findSelectedTabIndex(items, selectedTab)
 }
 
 function calcInitialInterval(n, index) {
-    var newStartIndex = index - COUNT_DISPLAYED_TABS / 2,
+    let newStartIndex = index - COUNT_DISPLAYED_TABS / 2,
         newEndIndex = index + COUNT_DISPLAYED_TABS / 2;
     if (newStartIndex >= 0 && newEndIndex <= n) {
         return {
@@ -41,7 +40,7 @@ function calcInitialInterval(n, index) {
 }
 
 function calcIntervalBoundaries(n, startIndex, operation) {
-    var endIndex = startIndex + COUNT_DISPLAYED_TABS,
+    let endIndex = startIndex + COUNT_DISPLAYED_TABS,
         newStartIndex = startIndex + operation,
         newEndIndex = endIndex + operation;
     if (newStartIndex >= 0 && newEndIndex <= n) {
@@ -103,7 +102,7 @@ export default React.createClass({
 
     _onTouchMove: function (event) {
         const TOUCH_SENSITIVE = 50;
-        var currentX = event.touches[0].clientX;
+        let currentX = event.touches[0].clientX;
         if (currentX > startX + TOUCH_SENSITIVE) {
             startX += TOUCH_SENSITIVE;
             let interval = calcIntervalBoundaries(this.state.items.length, this.state.startIndex, -1);
@@ -123,7 +122,7 @@ export default React.createClass({
     },
 
     _updateList: function () {
-        var items = Store.getTabs(),
+        let items = Store.getTabs(),
             selectedTab = Store.getSelected(),
             n = items.length;
 

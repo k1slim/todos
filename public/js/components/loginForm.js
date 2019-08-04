@@ -61,7 +61,7 @@ export default React.createClass({
     },
 
     _login: function () {
-        var status = LoginStore.getLoginStatus();
+        let status = LoginStore.getLoginStatus();
         switch (status) {
             case 'Incorrect username':
                 this.setState({loginError: true});
